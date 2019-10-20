@@ -54,11 +54,21 @@ const Bio = () => {
         }}
       />
       <p>
-        Written by <strong>{author}</strong> who lives and works in San
-        Francisco building useful things.
+      After some enterpreneurships I had the opportunity to build a strong marketing and design full stack skillset. 
+      I use these skills to drive growth to companies everyday being the creative and managing director of yumm.studio. 
+      A work that I simply love doing.
+        <br/>
         {` `}
         <a href={`https://twitter.com/${social.twitter}`}>
-          You should follow him on Twitter
+          Twitter
+        </a>
+        {` / `}
+        <a href={`https://twitter.com/${social.twitter}`}>
+          Linkedin
+        </a>
+        {` / `}
+        <a href={`https://twitter.com/${social.twitter}`}>
+          Email
         </a>
       </p>
     </div>
