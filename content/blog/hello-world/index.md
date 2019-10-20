@@ -1,7 +1,8 @@
 ---
-title: Hello World
+title: Hello World title
 date: "2015-05-01T22:12:03.284Z"
-description: "Hello World"
+description: "Hello World is a description in the md file"
+img: "./salty_egg.jpg"
 ---
 
 This is my first post on my new fake blog! How exciting!

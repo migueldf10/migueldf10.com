@@ -13,9 +13,8 @@ class Layout extends React.Component {
       header = (
         <h1
           style={{
-            ...scale(1.5),
-            marginBottom: rhythm(1.5),
-            marginTop: 0,
+            ...scale(0),
+            margin: 0,
           }}
         >
           <Link
@@ -34,7 +33,9 @@ class Layout extends React.Component {
       header = (
         <h3
           style={{
-            marginTop: 0,
+            margin: 0,
+            ...scale(0),
+
           }}
         >
           <Link
@@ -52,24 +53,43 @@ class Layout extends React.Component {
     }
     return (
       <div
-        style={{
-          marginLeft: `auto`,
-          marginRight: `auto`,
-          maxWidth: rhythm(24),
-          padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
-        }}
       >
-        <header>{header}</header>
-        <main>{children}</main>
-        <hr/>
-        <footer
+        <header
           style={{
-            ...scale(-0.3),
-          }}>
-          Miguel Domenech© {new Date().getFullYear()}, All rights reserved.
-          {` `}
-          <a href="https://www.gatsbyjs.org">Contact</a>
-        </footer>
+            borderBottom: `1px solid #999`,
+            padding: `${rhythm(1)} ${rhythm(3 / 4)}`,
+            display: 'flex',
+            alignItems: 'baseline',
+            justifyContent: 'space-between',
+
+
+          }}>{header} 
+          <a
+            style={{
+              ...scale(-1/2),
+            }}>Contact</a></header>
+
+        <div
+          style={{
+            marginLeft: `auto`,
+            marginRight: `auto`,
+            maxWidth: rhythm(24),
+            padding: `${rhythm(1)} ${rhythm(3 / 4)}`,
+          }}
+        >
+
+
+          <main>{children}</main>
+          <hr/>
+          <footer
+            style={{
+              ...scale(-0.3),
+            }}>
+            Miguel Domenech© {new Date().getFullYear()}, All rights reserved.
+            {` `}
+            <a href="https://www.gatsbyjs.org">Contact</a>
+          </footer>
+        </div>
       </div>
     )
   }

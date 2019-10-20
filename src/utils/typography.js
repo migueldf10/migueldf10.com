@@ -8,7 +8,7 @@ const typography = new Typography({
   baseLineHeight: 1.666,
   headerFontFamily: ['IBM Plex Serif', 'Helvetica Neue', 'Segoe UI', 'Helvetica', 'Arial', 'sans-serif'],
   bodyFontFamily: ['Gayathri', 'serif'],
-  scaleRatio: 3,
+  scaleRatio: 2,
   googleFonts: [
     {
       name: 'Gayathri',
@@ -36,6 +36,8 @@ const typography = new Typography({
       paddingLeft: rhythm(13/16),
       marginLeft: rhythm(0),
       borderLeft: `2px solid #444`,
+      paddingTop: rhythm(1/2),
+      paddingBottom: rhythm(1/2),
     },
     'blockquote > :last-child': {
       marginBottom: 0,

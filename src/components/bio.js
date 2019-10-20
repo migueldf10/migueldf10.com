@@ -36,10 +36,21 @@ const Bio = () => {
   return (
     <div
       style={{
-        display: `flex`,
         marginBottom: rhythm(2.5),
       }}
     >
+
+      <hr
+            style={{
+              marginBottom: rhythm(1),
+              display: 'block'
+            }}
+          />
+      <div
+        style={{
+          display: `flex`,
+          marginBottom: rhythm(2.5),
+        }}>
       <Image
         fixed={data.avatar.childImageSharp.fixed}
         alt={author}
@@ -54,9 +65,9 @@ const Bio = () => {
         }}
       />
       <p>
-      After some enterpreneurships I had the opportunity to build a strong marketing and design full stack skillset. 
-      I use these skills to drive growth to companies everyday being the creative and managing director of yumm.studio. 
-      A work that I simply love doing.
+        After some enterpreneurships I had the opportunity to build a strong marketing and design full stack skillset. 
+        I use these skills to drive growth to companies everyday being the creative and managing director of yumm.studio. 
+        A work that I simply love doing.
         <br/>
         {` `}
         <a href={`https://twitter.com/${social.twitter}`}>
@@ -71,6 +82,7 @@ const Bio = () => {
           Email
         </a>
       </p>
+    </div>
     </div>
   )
 }

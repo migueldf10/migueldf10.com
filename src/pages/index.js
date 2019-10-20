@@ -4,7 +4,7 @@ import { Link, graphql } from "gatsby"
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import { rhythm } from "../utils/typography"
+import { rhythm, scale } from "../utils/typography"
 
 class BlogIndex extends React.Component {
   render() {
@@ -15,15 +15,29 @@ class BlogIndex extends React.Component {
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO title="All posts" />
-        <Bio />
+
+        <h2
+          style={{
+            marginTop:rhythm(2),
+            ...scale(0.6),
+            
+          }}>Hello, it's Miguel Domenech</h2>
+          <p>Y usually write one article per week at least, and update and share insightful content related with the process we follow at Yumm.Studio, a Marketing and Growth Hacking agency I am creative director of.</p>
+
+
         {posts.map(({ node }) => {
           const title = node.frontmatter.title || node.fields.slug
           return (
-            <article key={node.fields.slug}>
+            <article 
+              style={{
+                borderTop: '1px solid #999'
+              }}
+              key={node.fields.slug}>
               <header>
                 <h3
                   style={{
                     marginBottom: rhythm(1 / 4),
+                    marginTop: rhythm(1 ),
                   }}
                 >
                   <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
@@ -34,6 +48,10 @@ class BlogIndex extends React.Component {
               </header>
               <section>
                 <p
+                  style={{
+                    color: '#999'
+
+                  }}
                   dangerouslySetInnerHTML={{
                     __html: node.frontmatter.description || node.excerpt,
                   }}
@@ -42,6 +60,9 @@ class BlogIndex extends React.Component {
             </article>
           )
         })}
+
+        <Bio />
+
       </Layout>
     )
   }
