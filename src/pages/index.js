@@ -18,11 +18,15 @@ class BlogIndex extends React.Component {
 
         <h2
           style={{
-            marginTop:rhythm(2),
+            marginTop:rhythm(3),
             ...scale(0.6),
             
           }}>Hello, it's Miguel Domenech</h2>
-          <p>Y usually write one article per week at least, and update and share insightful content related with the process we follow at Yumm.Studio, a Marketing and Growth Hacking agency I am creative director of.</p>
+          <p
+          style={{
+            padding: "50px 0",
+          }}>
+            Y usually write one article per week at least, and update and share insightful content related with the process we follow at Yumm.Studio, a Marketing and Growth Hacking agency I am creative director of.</p>
 
 
         {posts.map(({ node }) => {
@@ -30,7 +34,9 @@ class BlogIndex extends React.Component {
           return (
             <article 
               style={{
-                borderTop: '1px solid #999'
+                borderTop: '1px solid #999',
+                marginTop: rhythm(1),
+                marginBottom: rhythm(1),
               }}
               key={node.fields.slug}>
               <header>
@@ -49,7 +55,8 @@ class BlogIndex extends React.Component {
               <section>
                 <p
                   style={{
-                    color: '#999'
+                    color: '#999',
+                    ...scale(-0.4),
 
                   }}
                   dangerouslySetInnerHTML={{

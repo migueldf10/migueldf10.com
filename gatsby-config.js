@@ -6,6 +6,10 @@ module.exports = {
     siteUrl: `https://migueldf10.com/`,
     social: {
       twitter: `migueldf10`,
+      linkedin: `migueldf10`,
+    },
+    contact: {
+      email: `miguel@migueldf10.com`,
     },
   },
   plugins: [

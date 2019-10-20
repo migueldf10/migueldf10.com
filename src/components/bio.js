@@ -26,23 +26,28 @@ const Bio = () => {
           author
           social {
             twitter
+            linkedin
+          }
+          contact {
+            email
           }
         }
       }
     }
   `)
 
-  const { author, social } = data.site.siteMetadata
+  const { author, social, contact } = data.site.siteMetadata
   return (
     <div
       style={{
         marginBottom: rhythm(2.5),
       }}
+      id="profileBio"
     >
 
       <hr
             style={{
-              marginBottom: rhythm(1),
+              margin: rhythm(3),
               display: 'block'
             }}
           />
@@ -68,17 +73,21 @@ const Bio = () => {
         After some enterpreneurships I had the opportunity to build a strong marketing and design full stack skillset. 
         I use these skills to drive growth to companies everyday being the creative and managing director of yumm.studio. 
         A work that I simply love doing.
-        <br/>
+        <div style={{
+          marginBottom: rhythm(1.5)
+        }}/>
+        {` `}
+        <span><b>More</b> /</span>
         {` `}
         <a href={`https://twitter.com/${social.twitter}`}>
           Twitter
         </a>
         {` / `}
-        <a href={`https://twitter.com/${social.twitter}`}>
+        <a href={`https://linkedin.com/in/${social.linkedin}`}>
           Linkedin
         </a>
         {` / `}
-        <a href={`https://twitter.com/${social.twitter}`}>
+        <a href={`mailto:${contact.email}?subject=Hey!`}>
           Email
         </a>
       </p>

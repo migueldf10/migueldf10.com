@@ -3,6 +3,12 @@ import { Link } from "gatsby"
 
 import { rhythm, scale } from "../utils/typography"
 
+if (typeof window !== 'undefined') {
+  // Make scroll behavior of internal links smooth
+  // eslint-disable-next-line global-require
+  require('smooth-scroll')('a[href*="#"]');
+}
+
 class Layout extends React.Component {
   render() {
     const { location, title, children } = this.props
@@ -67,7 +73,8 @@ class Layout extends React.Component {
           <a
             style={{
               ...scale(-1/2),
-            }}>Contact</a></header>
+            }}
+            href="#profileBio">Contact</a></header>
 
         <div
           style={{
@@ -87,7 +94,7 @@ class Layout extends React.Component {
             }}>
             Miguel Domenech© {new Date().getFullYear()}, All rights reserved.
             {` `}
-            <a href="https://www.gatsbyjs.org">Contact</a>
+            {/* <a href="#profileBio">Contact</a> */}
           </footer>
         </div>
       </div>
