@@ -5,7 +5,6 @@ description: This is a custom description for SEO and Open Graph purposes, rathe
 img: "./DSC_0407.jpg"
 type: photobook
 ---
-
 ![Prague](./DSC_0407.jpg)
 ![Prague](./DSC_0457.jpg)
 ![Prague](./DSC_0475.jpg)

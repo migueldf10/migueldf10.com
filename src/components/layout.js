@@ -9,9 +9,9 @@ if (typeof window !== 'undefined') {
   require('smooth-scroll')('a[href*="#"]');
 }
 
-class Layout extends React.Component {
+export default class Layout extends React.Component {
   render() {
-    const { location, title, children } = this.props
+    const { location, title, children, type } = this.props
     const rootPath = `${__PATH_PREFIX__}/`
     let header
 
@@ -57,6 +57,22 @@ class Layout extends React.Component {
         </h3>
       )
     }
+    let LayoutStyles = ""
+    if (type ==="fullwidth"){
+      LayoutStyles = {
+        marginLeft: `auto`,
+        marginRight: `auto`,
+        maxWidth: '2600px',
+        padding: `${rhythm(1)} ${rhythm(3 / 4)}`,
+      }
+    } else {
+      LayoutStyles = {
+        marginLeft: `auto`,
+        marginRight: `auto`,
+        maxWidth: rhythm(24),
+        padding: `${rhythm(1)} ${rhythm(3 / 4)}`,
+      }
+    }
     return (
       <div
       >
@@ -77,12 +93,7 @@ class Layout extends React.Component {
             href="#profileBio">Contact</a></header>
 
         <div
-          style={{
-            marginLeft: `auto`,
-            marginRight: `auto`,
-            maxWidth: rhythm(24),
-            padding: `${rhythm(1)} ${rhythm(3 / 4)}`,
-          }}
+          style={LayoutStyles}
         >
 
 
@@ -101,5 +112,3 @@ class Layout extends React.Component {
     )
   }
 }
-
-export default Layout
