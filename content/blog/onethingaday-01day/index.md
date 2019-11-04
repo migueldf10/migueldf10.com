@@ -1,7 +1,7 @@
 ---
-title: One thing a day
+title: Day 1 - Prague
 date: "2015-05-28T22:40:32.169Z"
-description: This is a custom description for SEO and Open Graph purposes, rather than the default generated excerpt. Simply add a description field to the frontmatter.
+description: Another day of #onethingaday.
 img: "./DSC_0407.jpg"
 type: photobook
 ---
