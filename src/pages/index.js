@@ -5,6 +5,7 @@ import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { rhythm, scale } from "../utils/typography"
+import Header from '../components/header'
 
 class BlogIndex extends React.Component {
   render() {
@@ -15,19 +16,7 @@ class BlogIndex extends React.Component {
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO title="All posts" />
-
-        <h2
-          style={{
-            marginTop:rhythm(3),
-            ...scale(0.6),
-            
-          }}>Hello, it's Miguel Domenech</h2>
-          <p
-          style={{
-            padding: "50px 0",
-          }}>
-            Y usually write one article per week at least, and update and share insightful content related with the process we follow at Yumm.Studio, a Marketing and Growth Hacking agency I am creative director of.</p>
-
+        <Header title="hello, its miguel domenech" subtitle="Y usually write one article per week at least, and update and share insightful content related with the process we follow at Yumm.Studio, a Marketing and Growth Hacking agency I am creative director of."/>
 
         {posts.map(({ node }) => {
           const title = node.frontmatter.title || node.fields.slug

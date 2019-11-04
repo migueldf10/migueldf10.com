@@ -7,6 +7,7 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { rhythm, scale } from "../utils/typography"
 import MEDIA from '../utils/mediaTemplates'
+import {theme} from '../utils/theme'
 import styled from 'styled-components'
 
 const HeaderContainer = styled.header`
@@ -15,55 +16,55 @@ const HeaderContainer = styled.header`
   max-width: 50%;
   top: 100px;
   mix-blend-mode: difference;
-  color: teal!important;
+  color: ${theme.colorBlack}!important;
   z-index:9;
+  /* opacity: 1; */
 
 `
 class Header extends React.Component {
     constructor(props) {
         super(props);
         this.state = { 
-        scrollTop: 0,
+            scrollTop: 1,
+            windowHeight: 0,
+            windowWidth: 0,
         };
+        this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
     }
     componentDidMount() {
         window.addEventListener('scroll', this.handleScroll);
+        this.updateWindowDimensions();
+        window.addEventListener('resize', this.updateWindowDimensions);
     }
 
     componentWillUnmount() {
         window.removeEventListener('scroll', this.handleScroll);
+        window.removeEventListener('resize', this.updateWindowDimensions);
     }
+
+    updateWindowDimensions() {
+        this.setState({ windowWidth: window.innerWidth, windowHeight: window.innerHeight });
+      }
 
 
     handleScroll = ev => {
-        let scrollTopVal = window.scrollY;
+        let scrollTopVal = ( 300 - window.scrollY ) / 300 ;
         this.setState({
             scrollTop: scrollTopVal
         })
     }
     render() {
         const {title,subtitle,date} = this.props;
+
+        // let headerOpacity = this.state.scrollTop
         return (
-            <HeaderContainer style={{marginLeft:this.state.scrollTop}}>
+            <HeaderContainer >
             <div className="column">
-                <h1 style={{marginTop: rhythm(1),marginBottom: 0}}> {this.state.scrollTop} - {title} </h1>
-                <blockquote
-                    style={{
-                        ...scale(-1 / 5),
-                        display: `block`,
-                        marginTop: rhythm(1.5),
-                        marginBottom: rhythm(1.5),
-                    }}
-                >
+                <h1 style={{opacity: this.state.scrollTop+1}}>{title} </h1>
+                <p style={{opacity: this.state.scrollTop+0.3}}>
                 {subtitle}
-                </blockquote>
-                <p
-                    style={{
-                        ...scale(-1/2),
-                        display: `block`,
-                        margin: 0,
-                    }}
-                >
+                </p>
+                <p style={{opacity: this.state.scrollTop}}>
                 Article by Miguel Domenech {date}
                 </p>
             </div>

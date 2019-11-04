@@ -9,6 +9,8 @@ import { rhythm, scale } from "../utils/typography"
 import MEDIA from '../utils/mediaTemplates'
 import styled from 'styled-components'
 import Header from '../components/header'
+import ArticleNavigation from '../components/articleNavigation'
+
 const Article  = styled.article`
     img{
         /* max-width: 100%; */
@@ -72,64 +74,10 @@ class PhotobookTemplate extends React.Component {
         />
         <Article>
           <Header title={post.frontmatter.title} subtitle={post.frontmatter.description || post.excerpt} date={post.frontmatter.date}/>
-          {/* <Header style={{marginLeft:this.state.scrollTop}}>
-            <div className="column column-one">
-              <h1 style={{marginTop: rhythm(1),marginBottom: 0}}> {this.state.scrollTop} - {post.frontmatter.title} </h1>
-              <blockquote
-                style={{
-                  ...scale(-1 / 5),
-                  display: `block`,
-                  marginTop: rhythm(1.5),
-                  marginBottom: rhythm(1.5),
-                }}
-                >
-                {post.frontmatter.description || post.excerpt}
-              </blockquote>
-              <p
-                style={{
-                  ...scale(-1/2),
-                  display: `block`,
-                  margin: 0,
-                }}
-                >
-                Article by Miguel Domenech {post.frontmatter.date}
-              </p>
-            </div>
-            <div className="column column-two">
-            </div>
-          </Header> */}
           <section dangerouslySetInnerHTML={{ __html: post.html }} />
-          <footer>
-            <Bio />
-          </footer>
+          <footer><Bio /></footer>
         </Article>
-
-        <nav>
-          <ul
-            style={{
-              display: `flex`,
-              flexWrap: `wrap`,
-              justifyContent: `space-between`,
-              listStyle: `none`,
-              padding: 0,
-            }}
-          >
-            <li>
-              {previous && (
-                <Link to={previous.fields.slug} rel="prev">
-                  ← {previous.frontmatter.title}
-                </Link>
-              )}
-            </li>
-            <li>
-              {next && (
-                <Link to={next.fields.slug} rel="next">
-                  {next.frontmatter.title} →
-                </Link>
-              )}
-            </li>
-          </ul>
-        </nav>
+        <ArticleNavigation previous={previous} next={next}/>
       </Layout>
     )
   }

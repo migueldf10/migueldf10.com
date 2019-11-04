@@ -38,13 +38,7 @@ const Bio = () => {
 
   const { author, social, contact } = data.site.siteMetadata
   return (
-    <div
-      style={{
-        marginBottom: rhythm(2.5),
-      }}
-      id="profileBio"
-    >
-
+    <div style={{marginBottom: rhythm(2.5),}} id="profileBio">
       <hr
             style={{
               margin: rhythm(3),
@@ -69,14 +63,15 @@ const Bio = () => {
           borderRadius: `50%`,
         }}
       />
-      <p>
+      <div>
+        <p>
         After some enterpreneurships I had the opportunity to build a strong marketing and design full stack skillset. 
         I use these skills to drive growth to companies everyday being the creative and managing director of yumm.studio. 
         A work that I simply love doing.
-        <div style={{
+        </p>
+        <hr style={{
           marginBottom: rhythm(1.5)
         }}/>
-        {` `}
         <span><b>More</b> /</span>
         {` `}
         <a href={`https://twitter.com/${social.twitter}`}>
@@ -90,7 +85,8 @@ const Bio = () => {
         <a href={`mailto:${contact.email}?subject=Hey!`}>
           Email
         </a>
-      </p>
+      </div>
+
     </div>
     </div>
   )
