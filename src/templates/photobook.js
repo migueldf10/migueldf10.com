@@ -8,6 +8,7 @@ import SEO from "../components/seo"
 import { rhythm, scale } from "../utils/typography"
 import MEDIA from '../utils/mediaTemplates'
 import styled from 'styled-components'
+import Header from '../components/header'
 const Article  = styled.article`
     img{
         /* max-width: 100%; */
@@ -35,23 +36,33 @@ const Article  = styled.article`
         max-height: 100vh;
     }
 `
-const Header = styled.header`
-  position: fixed;
-  left: 32px;
-  max-width: 50%;
-  top: 100px;
-  mix-blend-mode: difference;
-  color: teal!important;
-  z-index:9;
-
-`
 class PhotobookTemplate extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { 
+      scrollTop: 0,
+    };
+  }
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll);
+  }
+
+  componentWillUnmount() {
+      window.removeEventListener('scroll', this.handleScroll);
+  }
+
+
+  handleScroll = ev => {
+      let scrollTopVal = window.scrollY;
+      this.setState({
+        scrollTop: scrollTopVal
+      })
+  }
+
   render() {
     const post = this.props.data.markdownRemark
     const siteTitle = this.props.data.site.siteMetadata.title
     const { previous, next } = this.props.pageContext
-
-
 
     return (
       <Layout location={this.props.location} title={siteTitle} type="fullwidth">
@@ -60,16 +71,10 @@ class PhotobookTemplate extends React.Component {
           description={post.frontmatter.description || post.excerpt}
         />
         <Article>
-          <Header>
+          <Header title={post.frontmatter.title} subtitle={post.frontmatter.description || post.excerpt} date={post.frontmatter.date}/>
+          {/* <Header style={{marginLeft:this.state.scrollTop}}>
             <div className="column column-one">
-              <h1
-                style={{
-                  marginTop: rhythm(1),
-                  marginBottom: 0,
-                }}
-                >
-                {post.frontmatter.title}
-              </h1>
+              <h1 style={{marginTop: rhythm(1),marginBottom: 0}}> {this.state.scrollTop} - {post.frontmatter.title} </h1>
               <blockquote
                 style={{
                   ...scale(-1 / 5),
@@ -92,7 +97,7 @@ class PhotobookTemplate extends React.Component {
             </div>
             <div className="column column-two">
             </div>
-          </Header>
+          </Header> */}
           <section dangerouslySetInnerHTML={{ __html: post.html }} />
           <footer>
             <Bio />
