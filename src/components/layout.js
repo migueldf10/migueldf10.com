@@ -1,7 +1,10 @@
 import React from "react"
 import { Link } from "gatsby"
-
+import theme from '../utils/theme'
+import Styles from '../utils/styles'
 import { rhythm, scale } from "../utils/typography"
+
+import NavBar from './navBar'
 
 if (typeof window !== 'undefined') {
   // Make scroll behavior of internal links smooth
@@ -12,91 +15,29 @@ if (typeof window !== 'undefined') {
 export default class Layout extends React.Component {
   render() {
     const { location, title, children, type } = this.props
-    const rootPath = `${__PATH_PREFIX__}/`
-    let header
-
-    if (location.pathname === rootPath) {
-      header = (
-        <h1
-          style={{
-            ...scale(0),
-            margin: 0,
-          }}
-        >
-          <Link
-            style={{
-              boxShadow: `none`,
-              textDecoration: `none`,
-              color: `inherit`,
-            }}
-            to={`/`}
-          >
-            {title}
-          </Link>
-        </h1>
-      )
-    } else {
-      header = (
-        <h3
-          style={{
-            margin: 0,
-            ...scale(0),
-
-          }}
-        >
-          <Link
-            style={{
-              boxShadow: `none`,
-              textDecoration: `none`,
-              color: `inherit`,
-            }}
-            to={`/`}
-          >
-            {title}
-          </Link>
-        </h3>
-      )
-    }
+    
     let LayoutStyles = ""
+    
     if (type ==="fullwidth"){
       LayoutStyles = {
         marginLeft: `auto`,
         marginRight: `auto`,
         maxWidth: '2600px',
-        padding: `${rhythm(1)} ${rhythm(3 / 4)}`,
+        padding: `32px`,
       }
     } else {
       LayoutStyles = {
         marginLeft: `auto`,
         marginRight: `auto`,
         maxWidth: rhythm(24),
-        padding: `${rhythm(1)} ${rhythm(3 / 4)}`,
+        padding: `32px`,
       }
     }
     return (
-      <div
-      >
-        {/* <header
-          style={{
-            borderBottom: `1px solid #999`,
-            padding: `${rhythm(1)} ${rhythm(3 / 4)}`,
-            display: 'flex',
-            alignItems: 'baseline',
-            justifyContent: 'space-between',
+      <Styles>
+        <NavBar location={location} title={title}/>
 
-
-          }}>{header} 
-          <a
-            style={{
-              ...scale(-1/2),
-            }}
-            href="#profileBio">Contact</a></header> */}
-
-        <div
-          style={LayoutStyles}
-        >
-
-
+        <div style={LayoutStyles}>
           <main>{children}</main>
           <hr/>
             <footer
@@ -107,10 +48,8 @@ export default class Layout extends React.Component {
               {` `}
               {/* <a href="#profileBio">Contact</a> */}
             </footer>
-
-          
         </div>
-      </div>
+      </Styles>
     )
   }
 }

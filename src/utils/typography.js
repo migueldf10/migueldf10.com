@@ -1,5 +1,5 @@
 import Typography from "typography"
-
+import theme from './theme'
 
 
 
@@ -44,6 +44,22 @@ const typography = new Typography({
     },
     a: {
       color: '#B99309'
+    },
+    '#navBar>a,#navBar>h1>a,#navBar>h3>a,#navBar>span>a': {
+      fontFamily: 'Gayathri, serif!important',
+      color: theme.colorBlack,
+      fontSize: rhythm(0.6),
+      letterSpacing: '1px',
+     
+    },
+    '#navBar>h1,#navBar>h2,#navBar>h3': {
+      margin: '5px 0px',
+      padding: '5px 0px',
+    },
+
+    '#navBar>span>a': {
+      fontSize: rhythm(0.5),
+      letterSpacing: '1px'
     }
   })
 })

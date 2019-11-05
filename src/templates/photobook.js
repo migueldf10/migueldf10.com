@@ -1,11 +1,8 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
-import Img from 'gatsby-image'
-
+import {graphql } from "gatsby"
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import { rhythm, scale } from "../utils/typography"
 import MEDIA from '../utils/mediaTemplates'
 import styled from 'styled-components'
 import Header from '../components/header'
@@ -13,19 +10,16 @@ import ArticleNavigation from '../components/articleNavigation'
 
 const Article  = styled.article`
     img{
-        /* max-width: 100%; */
-        /* max-height: 100vh; */
         width: auto;
-
     }
     .gatsby-resp-image-wrapper{
         width: 100%;
-        height: 100vh;
-        margin-bottom: 64px;
+        height: 60vh;
+        margin-bottom: 20px;
     }
     .gatsby-resp-image-background-image{
         max-width: 100%;
-        max-height: 100vh;
+        max-height: 60vh;
         display:block;
         margin: 0px;
     }
@@ -35,8 +29,34 @@ const Article  = styled.article`
         transform: translate(-50%,-50%);
         width: auto;
         height: auto;
-        max-height: 100vh;
+        max-height: 60vh;
     }
+    section{
+
+      p,h1,h2,h3,h4,h5,span{
+        display: block;
+        min-height: 50vh;
+      }
+    }
+    ${MEDIA.DESKTOP`
+    .gatsby-resp-image-wrapper{
+        height: 90vh;
+        margin-bottom: 120px;
+    }
+    .gatsby-resp-image-background-image{
+        max-height: 90vh;
+
+    }
+    .gatsby-resp-image-image{
+        max-height: 90vh;
+    }
+    section{
+
+      p,h1,h2,h3,h4,h5,span{
+        min-height: 50vh;
+      }
+    }
+    `}
 `
 class PhotobookTemplate extends React.Component {
   constructor(props) {

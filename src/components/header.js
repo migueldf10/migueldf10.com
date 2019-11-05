@@ -1,23 +1,25 @@
 import React from "react"
 import { Link } from "gatsby"
 import Img from 'gatsby-image'
-
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { rhythm, scale } from "../utils/typography"
 import MEDIA from '../utils/mediaTemplates'
-import {theme} from '../utils/theme'
+import theme from '../utils/theme'
 import styled from 'styled-components'
 
 const HeaderContainer = styled.header`
-  position: fixed;
-  left: 32px;
+  position: relative;
   max-width: 50%;
-  top: 100px;
-  mix-blend-mode: difference;
+  top: 0px;
+  mix-blend-mode: darken;
   color: ${theme.colorBlack}!important;
   z-index:9;
+  transition: 0.1s;
+  ${MEDIA.PHONE`
+    max-width: 100%;
+  `}
   /* opacity: 1; */
 
 `
@@ -25,7 +27,8 @@ class Header extends React.Component {
     constructor(props) {
         super(props);
         this.state = { 
-            scrollTop: 1,
+            scrollTopOpacity: 1,
+            scrollTopPosition: 0,
             windowHeight: 0,
             windowWidth: 0,
         };
@@ -50,7 +53,8 @@ class Header extends React.Component {
     handleScroll = ev => {
         let scrollTopVal = ( 300 - window.scrollY ) / 300 ;
         this.setState({
-            scrollTop: scrollTopVal
+            scrollTopOpacity: scrollTopVal,
+            scrollTopPosition: window.scrollY /3,
         })
     }
     render() {
@@ -58,13 +62,13 @@ class Header extends React.Component {
 
         // let headerOpacity = this.state.scrollTop
         return (
-            <HeaderContainer >
-                <div className="column">
-                    <h1 style={{opacity: this.state.scrollTop+1}}>{title} </h1>
-                    <p style={{opacity: this.state.scrollTop+0.3}}>
+            <HeaderContainer style={{top: this.state.scrollTopPosition}}>
+                <div className="column" >
+                    <h1 style={{opacity: this.state.scrollTopOpacity+0.1}}>{title} </h1>
+                    <p style={{opacity: this.state.scrollTopOpacity+0.1}}>
                     {subtitle}
                     </p>
-                    <p style={{opacity: this.state.scrollTop}}>
+                    <p style={{opacity: this.state.scrollTopOpacity}}>
                     Article by Miguel Domenech {date}
                     </p>
                 </div>

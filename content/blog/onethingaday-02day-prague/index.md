@@ -1,11 +1,14 @@
 ---
 title: Day 2 - Prague
 date: "2019-11-02T22:40:32.169Z"
-description: Another day of #onethingaday.
+description: Another day of onethingaday.
 img: "./DSC_0503.jpg"
 type: photobook
 ---
 ![Prague](./DSC_0503.jpg)
+
+# this post is part of the One thing a day Challegenge
+
 ![Prague](./DSC_0568.jpg)
 ![Prague](./DSC_0569.jpg)
 ![Prague](./DSC_0575.jpg)
