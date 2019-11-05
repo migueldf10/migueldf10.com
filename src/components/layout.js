@@ -76,7 +76,7 @@ export default class Layout extends React.Component {
     return (
       <div
       >
-        <header
+        {/* <header
           style={{
             borderBottom: `1px solid #999`,
             padding: `${rhythm(1)} ${rhythm(3 / 4)}`,
@@ -90,7 +90,7 @@ export default class Layout extends React.Component {
             style={{
               ...scale(-1/2),
             }}
-            href="#profileBio">Contact</a></header>
+            href="#profileBio">Contact</a></header> */}
 
         <div
           style={LayoutStyles}
@@ -99,14 +99,16 @@ export default class Layout extends React.Component {
 
           <main>{children}</main>
           <hr/>
-          <footer
-            style={{
-              ...scale(-0.3),
-            }}>
-            Miguel Domenech© {new Date().getFullYear()}, All rights reserved.
-            {` `}
-            {/* <a href="#profileBio">Contact</a> */}
-          </footer>
+            <footer
+              style={{
+                ...scale(-0.3),
+              }}>
+              Miguel Domenech© {new Date().getFullYear()}, All rights reserved.
+              {` `}
+              {/* <a href="#profileBio">Contact</a> */}
+            </footer>
+
+          
         </div>
       </div>
     )
