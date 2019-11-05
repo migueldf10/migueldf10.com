@@ -58,7 +58,7 @@ class Header extends React.Component {
         })
     }
     render() {
-        const {title,subtitle,date} = this.props;
+        const {title,subtitle,date,children} = this.props;
 
         // let headerOpacity = this.state.scrollTop
         return (
@@ -66,11 +66,10 @@ class Header extends React.Component {
                 <div className="column" >
                     <h1 style={{opacity: this.state.scrollTopOpacity+0.1}}>{title} </h1>
                     <p style={{opacity: this.state.scrollTopOpacity+0.1}}>
-                    {subtitle}
+                        {children}
                     </p>
-                    <p style={{opacity: this.state.scrollTopOpacity}}>
-                    Article by Miguel Domenech {date}
-                    </p>
+                    
+                    
                 </div>
             </HeaderContainer>
         )

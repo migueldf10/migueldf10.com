@@ -59,9 +59,13 @@ class BlogIndex extends React.Component {
     return (
       <Layout location={this.props.location} title={siteTitle} type="fullwidth">
         <SEO title="All posts" />
-        <Header title="hello, its miguel domenech" subtitle="Y usually write one article per week at least, and update and share insightful content related with the process we follow at Yumm.Studio, a Marketing and Growth Hacking agency I am creative director of."/>
-        <Grid>
-          <h3>#onethingaday</h3>
+        <Header 
+          title="Hello, its Miguel Domenech" >
+            <p>Currently I'm doing a <a href="#onethingaday">#onethingaday challenge</a> , where I try to share something publicly everyday.</p>
+            <p>I also write at least one article per week <a href="#theBlog">on the blog</a> usually about marketing related topics. Trying to share insightful content related with the process we follow at Yumm.Studio, a Marketing and Growth Hacking agency I am part of.</p>
+            </Header>
+        <Grid id="onethingaday">
+          <h3>#onethingaday_challenge</h3>
           <Masonry
               breakpointCols={breakpointColumnsImages}
               className="my-masonry-grid"
@@ -77,8 +81,10 @@ class BlogIndex extends React.Component {
               })}
           </Masonry>
         </Grid>
-        <Grid>
-          <h3>#onethingaday</h3>
+        <Grid id="theBlog">
+          <h3>#the_blog</h3>
+          <p>.</p>
+
           <Masonry
               breakpointCols={breakpointColumnsPosts}
               className="my-masonry-grid"
