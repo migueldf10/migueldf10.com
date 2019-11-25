@@ -33,9 +33,7 @@ const Grid = styled.ul`
   li {
     list-style:none;
     margin-bottom: 32px;
-    a{
-      cursor: url("/cursor+.png") 16 16, auto;
-    }
+
   }
 `
 
