@@ -80,7 +80,7 @@ class NavBar extends React.Component {
     } else {
       header = ( <h3 style={{margin: 0,...scale(0),}}className="headerTitles"><Link to={`/`}>{title}</Link></h3>)}
         return (
-            <NavBarContainer id="navBar" style={{transform: 'translateY('+this.state.scrollTopPosition/1.3+'px)',}}>
+            <NavBarContainer id="navBar" style={{transform: 'translateY('+this.state.scrollTopPosition/1.2+'px)',}}>
                 {header} 
                 
                 <span className="contactDesktop">

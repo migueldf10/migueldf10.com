@@ -4,11 +4,12 @@ import { Link, graphql } from "gatsby"
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import { rhythm, scale } from "../utils/typography"
+// import { rhythm, scale } from "../utils/typography"
 import Header from '../components/header'
-import Img from 'gatsby-image'
+// import Img from 'gatsby-image'
 import styled from 'styled-components'
 import Masonry from 'react-masonry-css'
+import ImageZoom from 'react-medium-image-zoom'
 
 const Grid = styled.ul`
   .my-masonry-grid {
@@ -71,9 +72,21 @@ class BlogIndex extends React.Component {
                 {imgs.map((item,index) => {
                   return (
                     <li key={index} >
-                      <Link to={item.relativePath.split('/').slice(0,-1).join('/')}>
-                        <Img fluid={item.childImageSharp.fluid}/>
-                      </Link>
+                      {/* <Link to={item.relativePath.split('/').slice(0,-1).join('/')}> */}
+                      {/* <a href={item.childImageSharp.original.src}> */}
+                      <ImageZoom
+                        image={{
+                          src: item.childImageSharp.fixed.src,
+                          alt: 'Golden Gate Bridge',
+                          className: 'img',
+                        }}
+                        zoomImage={{
+                          src: item.childImageSharp.original.src,
+                          alt: 'Golden Gate Bridge'
+                        }}
+                      />
+                        {/* <Img fluid={item.childImageSharp.fluid}/> */}
+                      {/* </a> */}
                     </li>
                   )
               })}
@@ -133,8 +146,11 @@ export const pageQuery = graphql`
         relativePath
         relativeDirectory
         childImageSharp{
-          fluid(maxWidth: 400) {
-            ...GatsbyImageSharpFluid
+          fixed(width: 400) {
+            src
+          }
+          original{
+            src
           }
         }
       }

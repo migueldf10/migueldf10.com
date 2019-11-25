@@ -4,8 +4,8 @@ import theme from './theme'
 const Styles = styled.div`
     background-color: ${theme.colorLight};
     cursor: none !important;
-    a{
-        cursor: none;
+    a,img{
+        cursor: none!important;
     }
 `
 

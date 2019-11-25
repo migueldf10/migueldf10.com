@@ -44,14 +44,11 @@ export default class MovingCursor extends Component {
 
     }
 
-    // componentWillUnmount() {
-    //     window.removeEventListener('mousemove', e => {
-    //         this.updateCursorPosition(e)
-    //     });
-    //     window.removeEventListener('scroll',e => {
-    //         this.updateCursorPosition(e)
-    //     })
-    // }
+    componentWillUnmount() {
+        window.removeEventListener('mousemove', e => {
+            this.updateCursorPosition(e)
+        });
+    }
 
     updateCursorPosition(event) {
         this.setState({ mouseX: event.clientX, mouseY: event.clientY });
