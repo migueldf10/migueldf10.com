@@ -31,8 +31,8 @@ export default class MovingCursor extends Component {
     constructor(props){
         super(props);
         this.state={
-            mouseX : 0,
-            mouseY : 0,
+            mouseX : -50,
+            mouseY : -50,
 
         }
     }
