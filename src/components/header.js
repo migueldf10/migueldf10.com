@@ -17,8 +17,8 @@ const HeaderContainer = styled.header`
   color: ${theme.colorBlack}!important;
   z-index:9;
   transition: 0.1s;
-  ${MEDIA.PHONE`
-    max-width: 100%;
+  ${MEDIA.TABLET`
+    max-width: 80%;
   `}
   /* opacity: 1; */
 

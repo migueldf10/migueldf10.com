@@ -65,10 +65,8 @@ const Bio = () => {
       />
       <div>
         <p>
-        After some enterpreneurships I had the opportunity to build a strong marketing and design full stack skillset. 
-        I use these skills to drive growth to companies everyday being the creative and managing director of yumm.studio. 
-        A work that I simply love doing.
-        </p>
+					Welcome to my personal corner of the internet! I am a Spanish marketer and front end developer who loves photography, traveling and the startup world. In my professional side you can visit <a href="https://yumm.studio">yumm.studio</a> the growth hacking agency I'm part of.
+			</p>
         <hr style={{
           marginBottom: rhythm(1.5)
         }}/>
