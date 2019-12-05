@@ -14,7 +14,6 @@ const NavBarContainer = styled.header`
   align-items: center;
   justify-content: space-between;
   padding: 0px 32px;
-  transition: 0.1s;
   a{
     text-decoration: none;
     text-transform: uppercase;
@@ -81,7 +80,7 @@ class NavBar extends React.Component {
     } else {
       header = ( <h3 style={{margin: 0,...scale(0),}}className="headerTitles"><Link to={`/`}>{title}</Link></h3>)}
         return (
-            <NavBarContainer id="navBar" style={{top: this.state.scrollTopPosition/1.3}}>
+            <NavBarContainer id="navBar" style={{transform: 'translateY('+this.state.scrollTopPosition/1.2+'px)',}}>
                 {header} 
                 
                 <span className="contactDesktop">
