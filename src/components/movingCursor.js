@@ -24,6 +24,9 @@ const Cursor = styled.div`
         position:relative;
         height:100%;
     }
+		@media (pointer: coarse) {
+			display: none;  
+		}
 
 `
 export default class MovingCursor extends Component {
