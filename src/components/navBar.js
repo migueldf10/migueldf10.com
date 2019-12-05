@@ -21,9 +21,9 @@ const NavBarContainer = styled.header`
   .contactMobile {
     display:none;
   }
-  ${MEDIA.PHONE`
+  ${MEDIA.TABLET`
     a,span,h1,h2,h3{
-      font-size: 14px!important;
+      font-size: 18px;
     }
     .contactMobile{
       display: inline-block;
@@ -32,6 +32,11 @@ const NavBarContainer = styled.header`
       display:none;
     }
   `}
+	${MEDIA.PHONE`
+		a,span,h1,h2,h3{
+			font-size: 14px;
+		}
+	`}
 `
 class NavBar extends React.Component {
     constructor(props) {
