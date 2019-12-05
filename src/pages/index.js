@@ -60,8 +60,7 @@ class BlogIndex extends React.Component {
         <SEO title="All posts" />
         <Header 
           title="Hello, its Miguel Domenech" >
-            <p>Currently I'm doing a <a href="#onethingaday">#onethingaday challenge</a> , where I try to share something publicly everyday.</p>
-            <p>I also write at least one article per week <a href="#theBlog">on the blog</a> usually about marketing related topics. Trying to share insightful content related with the process we follow at Yumm.Studio, a Marketing and Growth Hacking agency I am part of.</p>
+            <p>And this is my completely random blog.</p>
             </Header>
         <Grid id="onethingaday">
           <h3>#onethingaday_challenge</h3>
@@ -77,12 +76,12 @@ class BlogIndex extends React.Component {
                       <ImageZoom
                         image={{
                           src: item.childImageSharp.fixed.src,
-                          alt: 'Golden Gate Bridge',
+                          alt: '',
                           className: 'img',
                         }}
                         zoomImage={{
                           src: item.childImageSharp.original.src,
-                          alt: 'Golden Gate Bridge'
+                          alt: ''
                         }}
                       />
                         {/* <Img fluid={item.childImageSharp.fluid}/> */}

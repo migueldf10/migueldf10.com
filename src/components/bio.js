@@ -64,9 +64,7 @@ const Bio = () => {
         }}
       />
       <div>
-        <p>
-					Welcome to my personal corner of the internet! I am a Spanish marketer and front end developer who loves photography, traveling and the startup world. In my professional side you can visit <a href="https://yumm.studio">yumm.studio</a> the growth hacking agency I'm part of.
-			</p>
+        <p>Welcome to my personal corner of the internet!<br/>I am a Spanish marketer and front end developer who loves photography, traveling and the startup world. In my professional side you can visit <a href="https://yumm.studio">yumm.studio</a> the growth hacking agency I'm part of.</p>
         <hr style={{
           marginBottom: rhythm(1.5)
         }}/>
