@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Miguel Domenech's Blog`,
+    title: `Migueldf10.com`,
     author: `Miguel Domenech`,
     description: `A personal blog trying to deliver some quality content to the world!.`,
     siteUrl: `https://migueldf10.com/`,
@@ -37,8 +37,7 @@ module.exports = {
               maxWidth: 2600,
               linkImagesToOriginal: false,
               wrapperStyle: "max-height:100vh;",
-              className: "gatsbyImage"
-              
+              className: "gatsbyImage",
             },
           },
           {
@@ -54,8 +53,8 @@ module.exports = {
             resolve: `gatsby-remark-images-medium-zoom`, // point!
             options: {
               //...
-            }
-          }
+            },
+          },
         ],
       },
     },

@@ -1,13 +1,13 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
-import Img from 'gatsby-image'
+import Img from "gatsby-image"
 
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { rhythm, scale } from "../utils/typography"
-import MEDIA from '../utils/mediaTemplates'
-import styled from 'styled-components'
+import MEDIA from "../utils/mediaTemplates"
+import styled from "styled-components"
 
 const Header = styled.header`
   margin-bottom: ${rhythm(3)};
@@ -25,7 +25,7 @@ const Header = styled.header`
   ${MEDIA.TABLET`
     flex-direction: column;
   `};
-  .column{
+  .column {
     display: block;
     height: auto;
     width: 50%;
@@ -36,15 +36,12 @@ const Header = styled.header`
 
   `};
   }
-
 `
 class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark
     const siteTitle = this.props.data.site.siteMetadata.title
     const { previous, next } = this.props.pageContext
-
-
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
@@ -54,17 +51,13 @@ class BlogPostTemplate extends React.Component {
         />
         <article>
           <Header>
-            
             <div className="column column-one">
-              
-
-
               <h1
                 style={{
                   marginTop: rhythm(1),
                   marginBottom: 0,
                 }}
-                >
+              >
                 {post.frontmatter.title}
               </h1>
               <blockquote
@@ -74,16 +67,16 @@ class BlogPostTemplate extends React.Component {
                   marginTop: rhythm(1.5),
                   marginBottom: rhythm(1.5),
                 }}
-                >
+              >
                 {post.frontmatter.description || post.excerpt}
               </blockquote>
               <p
                 style={{
-                  ...scale(-1/2),
+                  ...scale(-1 / 2),
                   display: `block`,
                   margin: 0,
                 }}
-                >
+              >
                 Article by Miguel Domenech {post.frontmatter.date}
               </p>
             </div>

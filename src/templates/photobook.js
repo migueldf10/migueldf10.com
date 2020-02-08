@@ -1,50 +1,58 @@
 import React from "react"
-import {graphql } from "gatsby"
+import { graphql } from "gatsby"
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import MEDIA from '../utils/mediaTemplates'
-import styled from 'styled-components'
-import Header from '../components/header'
-import ArticleNavigation from '../components/articleNavigation'
+import MEDIA from "../utils/mediaTemplates"
+import styled from "styled-components"
+import Header from "../components/header"
+import ArticleNavigation from "../components/articleNavigation"
 
-const Article  = styled.article`
-    img{
-        width: auto;
+const Article = styled.article`
+  img {
+    width: auto;
+    height: auto;
+  }
+  .gatsby-resp-image-wrapper {
+    width: 100%;
+    /* height: 80vh; */
+    margin-bottom: 120px;
+    img {
+      height: auto !important;
     }
-    .gatsby-resp-image-wrapper{
-        width: 100%;
-        height: 80vh;
-        margin-bottom: 120px;
-    }
-    .gatsby-resp-image-background-image{
-        max-width: 100%;
-        max-height: 80vh;
-        display:block;
-        margin: 0px;
-    }
-    .gatsby-resp-image-image{
-        top: 50%;
+  }
+  .gatsby-resp-image-background-image {
+    max-width: 100%;
+    max-height: 80vh;
+    display: block;
+    margin: 0px;
+  }
+  .gatsby-resp-image-image {
+    /* top: 50%;
         left: 50%;
-        transform: translate(-50%,-50%);
-        width: auto;
-        height: auto;
-        max-height: 80vh;
-    }
-    section{
-      h1,h2,h3,h4,h5{
-        display: block;
-        min-height: 30vh;
-        max-width: 50%;
-        margin: auto;
-        ${MEDIA.PHONE`
+        transform: translate(-50%,-50%); */
+    width: auto;
+    height: auto;
+    max-height: 80vh;
+  }
+  section {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      display: block;
+      min-height: 30vh;
+      max-width: 50%;
+      margin: auto;
+      ${MEDIA.PHONE`
         max-width: 90%;
         margin-bottom: 32px;
 
-        `
-      }
+        `}
     }
-    ${MEDIA.PHONE`
+  }
+  ${MEDIA.PHONE`
     .gatsby-resp-image-wrapper{
         height: 60vh;
         margin-bottom: 32px;
@@ -62,29 +70,28 @@ const Article  = styled.article`
         min-height: 30vh;
       }
     }
-    `}
+  `}
 `
 class PhotobookTemplate extends React.Component {
   constructor(props) {
-    super(props);
-    this.state = { 
+    super(props)
+    this.state = {
       scrollTop: 0,
-    };
+    }
   }
   componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll);
+    window.addEventListener("scroll", this.handleScroll)
   }
 
   componentWillUnmount() {
-      window.removeEventListener('scroll', this.handleScroll);
+    window.removeEventListener("scroll", this.handleScroll)
   }
 
-
   handleScroll = ev => {
-      let scrollTopVal = window.scrollY;
-      this.setState({
-        scrollTop: scrollTopVal
-      })
+    let scrollTopVal = window.scrollY
+    this.setState({
+      scrollTop: scrollTopVal,
+    })
   }
 
   render() {
@@ -99,11 +106,17 @@ class PhotobookTemplate extends React.Component {
           description={post.frontmatter.description || post.excerpt}
         />
         <Article>
-          <Header title={post.frontmatter.title} subtitle={post.frontmatter.description || post.excerpt} date={post.frontmatter.date}/>
+          <Header
+            title={post.frontmatter.title}
+            subtitle={post.frontmatter.description || post.excerpt}
+            date={post.frontmatter.date}
+          />
           <section dangerouslySetInnerHTML={{ __html: post.html }} />
-          <footer><Bio /></footer>
+          <footer>
+            <Bio />
+          </footer>
         </Article>
-        <ArticleNavigation previous={previous} next={next}/>
+        <ArticleNavigation previous={previous} next={next} />
       </Layout>
     )
   }
@@ -129,7 +142,7 @@ export const photoboookQuery = graphql`
         description
         img {
           childImageSharp {
-            fluid(maxWidth: 2600 maxHeight:2600) {
+            fluid(maxWidth: 2600, maxHeight: 2600) {
               ...GatsbyImageSharpFluid
             }
           }
