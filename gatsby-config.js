@@ -24,7 +24,7 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/content/assets`,
-        name: `assets`,
+        name: `images`,
       },
     },
     {
@@ -36,23 +36,6 @@ module.exports = {
             options: {
               maxWidth: 2600,
               linkImagesToOriginal: false,
-              wrapperStyle: "max-height:100vh;",
-              className: "gatsbyImage",
-            },
-          },
-          {
-            resolve: `gatsby-remark-responsive-iframe`,
-            options: {
-              wrapperStyle: `margin-bottom: 1.0725rem`,
-            },
-          },
-          `gatsby-remark-prismjs`,
-          `gatsby-remark-copy-linked-files`,
-          `gatsby-remark-smartypants`,
-          {
-            resolve: `gatsby-remark-images-medium-zoom`, // point!
-            options: {
-              //...
             },
           },
         ],
@@ -60,12 +43,6 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        //trackingId: `ADD YOUR TRACKING ID HERE`,
-      },
-    },
     `gatsby-plugin-feed`,
     {
       resolve: `gatsby-plugin-manifest`,
@@ -88,9 +65,9 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-plugin-google-tagmanager",
+      resolve: `gatsby-plugin-google-tagmanager`,
       options: {
-        id: "GTM-NNHS2J2",
+        id: `GTM-NNHS2J2`,
         includeInDevelopment: true,
       },
     },

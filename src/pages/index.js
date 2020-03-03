@@ -97,7 +97,7 @@ export const pageQuery = graphql`
       relativePath
       childImageSharp {
         fluid(maxWidth: 960) {
-          src
+          ...GatsbyImageSharpFluid
         }
       }
     }

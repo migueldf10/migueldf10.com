@@ -61,7 +61,9 @@ export default class ArticleGridElement extends React.Component {
           <Header>
             <small>{node.frontmatter.date}</small>
             {node.frontmatter.tags
-              ? node.frontmatter.tags.map((tag, index) => <small>{tag}</small>)
+              ? node.frontmatter.tags.map((tag, index) => (
+                  <small key={index}>{tag}</small>
+                ))
               : null}
           </Header>
           <h3>{title}</h3>
