@@ -34,12 +34,15 @@ const HeaderContainer = styled.header`
   }
   p {
     font-size: 2rem;
+    line-height: 1.4;
+    margin: 0px;
+    margin-top: 10px;
   }
   /* transition: 0.1s; */
   max-width: 100%;
   ${MEDIA.MIN_TABLET`
-  max-width: 70%;
-    h1 {
+  max-width: 80%;
+  h1 {
     font-size: 5rem;
   }
   h2 {
