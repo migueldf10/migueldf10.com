@@ -1,7 +1,7 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import Image from "gatsby-image"
-import styled from "styled-components"
+// import styled from "styled-components"
 import { rhythm } from "../utils/typography"
 
 const Bio = () => {

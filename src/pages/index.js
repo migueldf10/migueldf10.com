@@ -66,10 +66,7 @@ class BlogIndex extends React.Component {
           <p>
             <mark>I’m a full stack marketer and web designer.</mark>
             <br />I help start-ups as a freelancer in{" "}
-            <a href="https://yumm.studio" style={{ color: "black" }}>
-              Yumm Studio
-            </a>
-            .
+            <a href="https://yumm.studio">Yumm Studio</a>.
           </p>
         </Header>
         <Content>

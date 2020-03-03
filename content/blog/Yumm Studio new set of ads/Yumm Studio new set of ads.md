@@ -9,6 +9,4 @@ tags:
     - design
 ---
 
-Our first client, The Dutch Online academy is growing fast and I released the brand guidelines. You can see them and much more in the Yumm Studio portfolio section.
-
-
+Our first client, The Dutch Online academy is growing fast and I released the brand guidelines. You can see them and much more in the Yumm Studio portfolio section

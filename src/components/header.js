@@ -23,7 +23,9 @@ const HeaderContainer = styled.header`
   h1,
   h2,
   h3,
-  h4 {
+  h4,
+  a {
+    color: inherit;
     line-height: 1;
   }
   h1 {
