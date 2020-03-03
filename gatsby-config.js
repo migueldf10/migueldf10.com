@@ -64,12 +64,12 @@ module.exports = {
         pathToConfigModule: `src/utils/typography`,
       },
     },
-    {
-      resolve: `gatsby-plugin-google-tagmanager`,
-      options: {
-        id: `GTM-NNHS2J2`,
-        includeInDevelopment: true,
-      },
-    },
+    // {
+    //   resolve: `gatsby-plugin-google-tagmanager`,
+    //   options: {
+    //     id: `GTM-NNHS2J2`,
+    //     includeInDevelopment: true,
+    //   },
+    // },
   ],
 }
