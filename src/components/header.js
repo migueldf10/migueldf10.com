@@ -1,10 +1,4 @@
 import React from 'react'
-// import { Link } from "gatsby"
-// import Img from 'gatsby-image'
-// import Bio from "../components/bio"
-// import Layout from "../components/layout"
-// import SEO from "../components/seo"
-// import { rhythm, scale } from "../utils/typography"
 import MEDIA from '../utils/mediaTemplates'
 import theme from '../utils/theme'
 import styled from 'styled-components'
@@ -29,21 +23,17 @@ const HeaderContainer = styled.header`
 		line-height: 1;
 	}
 	h1 {
-		/* font-size: 3rem; */
 			margin: 0;
-			font-size: 20vw;
+			font-size: 4rem;
 			font-family: 'Decovar Regular24';
 			color: white;
-			font-variation-settings: 'SSTR' 1000;
-      animation: loadin 8s infinite linear;
+			font-variation-settings: 'SSTR' 100;
       display: flex;
       align-items: center;
       justify-content: center;
       width: 100%;
       height: 100%;
       text-align: center;
-      transform: translateZ(0);
-      backface-visibility: hidden;
       text-shadow: 
         -1px -1px 0px rgba(255, 255, 255, .7),
         1px -1px 0px rgba(255, 255, 255, .7),
@@ -69,21 +59,17 @@ const HeaderContainer = styled.header`
         -18px 34px 18px #a0a0a022,
         -19px 36px 19px #a0a0a022,
         -20px 38px 20px #a0a0a022,
-        -21px 39px 21px #a0a0a022;
+        -21px 39px 21px #a0a0a022,
+        1px -1px 1px #00EE00EE,
+        3px -3px 3px #00EE0022;
 		}
 
-		@keyframes loadin {
-			0% {
-        font-variation-settings: 'SSTR' 0;
-			}
-			100% {
-        font-variation-settings: 'SSTR' 1000;
-			}
-		}
 	h2 {
-		font-size: 2rem;
+    font-size: 2rem;
+    text-align:center;
 	}
 	p {
+    text-align:center;
 		font-size: 2rem;
 		line-height: 1.4;
 		margin: 0px;
@@ -105,59 +91,13 @@ const HeaderContainer = styled.header`
   `} /* opacity: 1; */
 `
 class Header extends React.Component {
-	constructor(props) {
-		super(props)
-		this.state = {
-			scrollTopOpacity: 1,
-			scrollTopPosition: 0,
-			windowHeight: 0,
-			windowWidth: 0,
-		}
-		this.updateWindowDimensions = this.updateWindowDimensions.bind(this)
-	}
-	componentDidMount() {
-		window.addEventListener('scroll', this.handleScroll)
-		this.updateWindowDimensions()
-		window.addEventListener('resize', this.updateWindowDimensions)
-	}
-
-	componentWillUnmount() {
-		window.removeEventListener('scroll', this.handleScroll)
-		window.removeEventListener('resize', this.updateWindowDimensions)
-	}
-
-	updateWindowDimensions() {
-		this.setState({
-			windowWidth: window.innerWidth,
-			windowHeight: window.innerHeight,
-		})
-	}
-
-	handleScroll = ev => {
-		let scrollTopVal = (300 - window.scrollY) / 300
-		this.setState({
-			scrollTopOpacity: scrollTopVal,
-			scrollTopPosition: window.scrollY / 3,
-		})
-	}
 	render() {
 		const { title, children } = this.props
-
-		// let headerOpacity = this.state.scrollTop
 		return (
-			<HeaderContainer
-				style={{
-					transform:
-						'translateY(' + this.state.scrollTopPosition + 'px)',
-				}}
-			>
+			<HeaderContainer>
 				<div className="column">
-					<h1 style={{ opacity: this.state.scrollTopOpacity + 0.1 }}>
-						{title}
-					</h1>
-					<div style={{ opacity: this.state.scrollTopOpacity + 0.1 }}>
-						{children}
-					</div>
+					<h1>{title}</h1>
+					<div>{children}</div>
 				</div>
 			</HeaderContainer>
 		)
