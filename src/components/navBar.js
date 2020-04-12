@@ -1,9 +1,8 @@
 import React from "react"
 import { Link } from "gatsby"
-import { scale } from "../utils/typography"
-import MEDIA from '../utils/mediaTemplates'
-import theme from '../utils/theme'
-import styled from 'styled-components'
+import MEDIA from "../utils/mediaTemplates"
+import theme from "../utils/theme"
+import styled from "styled-components"
 
 const NavBarContainer = styled.header`
   /* background-color: ${theme.colorBlack}; */
@@ -39,75 +38,87 @@ const NavBarContainer = styled.header`
 	`}
 `
 class NavBar extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { 
-            scrollTopOpacity: 1,
-            scrollTopPosition: 0,
-            windowHeight: 0,
-            windowWidth: 0,
-        };
-        this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+  constructor(props) {
+    super(props)
+    this.state = {
+      scrollTopOpacity: 1,
+      scrollTopPosition: 0,
+      windowHeight: 0,
+      windowWidth: 0,
     }
-    componentDidMount() {
-        window.addEventListener('scroll', this.handleScroll);
-        this.updateWindowDimensions();
-        window.addEventListener('resize', this.updateWindowDimensions);
-    }
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this)
+  }
+  componentDidMount() {
+    window.addEventListener("scroll", this.handleScroll)
+    this.updateWindowDimensions()
+    window.addEventListener("resize", this.updateWindowDimensions)
+  }
 
-    componentWillUnmount() {
-        window.removeEventListener('scroll', this.handleScroll);
-        window.removeEventListener('resize', this.updateWindowDimensions);
-    }
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.handleScroll)
+    window.removeEventListener("resize", this.updateWindowDimensions)
+  }
 
-    updateWindowDimensions() {
-        this.setState({ windowWidth: window.innerWidth, windowHeight: window.innerHeight });
-      }
+  updateWindowDimensions() {
+    this.setState({
+      windowWidth: window.innerWidth,
+      windowHeight: window.innerHeight,
+    })
+  }
 
+  handleScroll = ev => {
+    let scrollTopVal = (300 - window.scrollY) / 300
+    this.setState({
+      scrollTopOpacity: scrollTopVal,
+      scrollTopPosition: window.scrollY,
+    })
+  }
+  render() {
+    const { location, title } = this.props
 
-    handleScroll = ev => {
-        let scrollTopVal = ( 300 - window.scrollY ) / 300 ;
-        this.setState({
-          scrollTopOpacity: scrollTopVal,
-          scrollTopPosition: window.scrollY ,
-        })
-    }
-    render() {
-        const {location,title} = this.props;
-
-        const rootPath = `${__PATH_PREFIX__}/`
-        let header
+    const rootPath = `${__PATH_PREFIX__}/`
+    let header
 
     if (location.pathname === rootPath) {
       header = (
-        <h1 className="headerTitles"> <Link to={`/`}>{title}</Link></h1>
+        <h1 className="headerTitles">
+          {" "}
+          <Link to={`/`}>{title}</Link>
+        </h1>
       )
     } else {
-      header = ( <h3 style={{margin: 0,...scale(0),}}className="headerTitles"><Link to={`/`}>{title}</Link></h3>)}
-        return (
-            <NavBarContainer id="navBar" style={{transform: 'translateY('+this.state.scrollTopPosition/1.2+'px)',}}>
-                {header} 
-                
-                <span className="contactDesktop">
-                <span ><b>More</b> /</span>
-                  {` `}
-                  <a href={`https://twitter.com/migueldf10`}>
-                    Twitter
-                  </a>
-                  {` / `}
-                  <a href={`https://linkedin.com/in/migueldf10`}>
-                    Linkedin
-                  </a>
-                  {` / `}
-                  <a href={`mailto:migueldf10@gmail.com?subject=Hey!`}>
-                    Email
-                  </a>
-                  </span>
-                  <a href="#profileBio" className="contactMobile">Contact</a>
-            </NavBarContainer>
-        )
+      header = (
+        <h3 style={{ margin: 0 }} className="headerTitles">
+          <Link to={`/`}>{title}</Link>
+        </h3>
+      )
     }
+    return (
+      <NavBarContainer
+        id="navBar"
+        style={{
+          transform: "translateY(" + this.state.scrollTopPosition / 1.2 + "px)",
+        }}
+      >
+        {header}
+
+        <span className="contactDesktop">
+          <span>
+            <b>More</b> /
+          </span>
+          {` `}
+          <a href={`https://twitter.com/migueldf10`}>Twitter</a>
+          {` / `}
+          <a href={`https://linkedin.com/in/migueldf10`}>Linkedin</a>
+          {` / `}
+          <a href={`mailto:migueldf10@gmail.com?subject=Hey!`}>Email</a>
+        </span>
+        <a href="#profileBio" className="contactMobile">
+          Contact
+        </a>
+      </NavBarContainer>
+    )
+  }
 }
 
 export default NavBar
-

@@ -2,7 +2,6 @@ import React from "react"
 // import { Link } from "gatsby"
 // import theme from '../utils/theme'
 import Styles from "../utils/styles"
-import { rhythm, scale } from "../utils/typography"
 import MovingCursor from "../components/movingCursor"
 import NavBar from "./navBar"
 
@@ -29,7 +28,7 @@ export default class Layout extends React.Component {
       LayoutStyles = {
         marginLeft: `auto`,
         marginRight: `auto`,
-        maxWidth: rhythm(24),
+        maxWidth: "24rem",
         padding: `32px`,
       }
     }
@@ -40,11 +39,7 @@ export default class Layout extends React.Component {
           <MovingCursor />
           <main>{children}</main>
           <hr />
-          <footer
-            style={{
-              ...scale(-0.3),
-            }}
-          >
+          <footer>
             Miguel Domenech© {new Date().getFullYear()}, All rights reserved.
             {` `}
             {/* <a href="#profileBio">Contact</a> */}

@@ -1,16 +1,14 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 import Img from "gatsby-image"
-
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import { rhythm, scale } from "../utils/typography"
 import MEDIA from "../utils/mediaTemplates"
 import styled from "styled-components"
 
 const Header = styled.header`
-  margin-bottom: ${rhythm(3)};
+  margin-bottom: 3rem;
   display: flex;
   align-items: center;
   flex-direction: row-reverse;
@@ -20,7 +18,7 @@ const Header = styled.header`
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
-  padding: 0 ${rhythm(1)};
+  padding: 0 1rem;
 
   ${MEDIA.TABLET`
     flex-direction: column;
@@ -29,7 +27,7 @@ const Header = styled.header`
     display: block;
     height: auto;
     width: 50%;
-    padding: 0 ${rhythm(1)};
+    padding: 0 1rem;
     ${MEDIA.TABLET`
       width: 100%;
       padding: 0;
@@ -54,7 +52,7 @@ class BlogPostTemplate extends React.Component {
             <div className="column column-one">
               <h1
                 style={{
-                  marginTop: rhythm(1),
+                  marginTop: "1rem",
                   marginBottom: 0,
                 }}
               >
@@ -62,17 +60,15 @@ class BlogPostTemplate extends React.Component {
               </h1>
               <blockquote
                 style={{
-                  ...scale(-1 / 5),
                   display: `block`,
-                  marginTop: rhythm(1.5),
-                  marginBottom: rhythm(1.5),
+                  marginTop: "1.5rem",
+                  marginBottom: "1.5rem",
                 }}
               >
                 {post.frontmatter.description || post.excerpt}
               </blockquote>
               <p
                 style={{
-                  ...scale(-1 / 2),
                   display: `block`,
                   margin: 0,
                 }}

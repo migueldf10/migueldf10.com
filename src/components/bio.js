@@ -2,7 +2,6 @@ import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import Image from "gatsby-image"
 // import styled from "styled-components"
-import { rhythm } from "../utils/typography"
 
 const Bio = () => {
   const data = useStaticQuery(graphql`
@@ -33,31 +32,31 @@ const Bio = () => {
   return (
     <div
       style={{
-        marginBottom: rhythm(2.5),
+        marginBottom: "2.5rem",
         padding: `32px`,
       }}
       id="profileBio"
     >
       <hr
         style={{
-          margin: rhythm(3),
+          margin: "3rem",
           display: "block",
         }}
       />
       <div
         style={{
           display: `flex`,
-          marginBottom: rhythm(2.5),
+          marginBottom: "2rem",
           marginLeft: `auto`,
           marginRight: `auto`,
-          maxWidth: rhythm(24),
+          maxWidth: "24rem",
         }}
       >
         <Image
           fixed={data.avatar.childImageSharp.fixed}
           alt={author}
           style={{
-            marginRight: rhythm(1 / 2),
+            marginRight: "0.5rem",
             marginBottom: 0,
             minWidth: 50,
             borderRadius: `100%`,
@@ -75,7 +74,7 @@ const Bio = () => {
           </p>
           <hr
             style={{
-              marginBottom: rhythm(1.5),
+              marginBottom: "1.5rem",
             }}
           />
           <span>
