@@ -11,3 +11,13 @@
 	font-family: 'Decovar Regular24';
 	src: url('Decovar-VF.ttf') format('truetype');
 }
+@font-face {
+	font-family: 'League Spartan Variable';
+	src: url('LeagueSpartanVariable.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Inconsolata';
+	src: url('Inconsolata-VF.ttf') format('truetype');
+	font-weight: 175 900;
+	font-stretch: 50% 200%;
+}
