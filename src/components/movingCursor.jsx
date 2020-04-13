@@ -51,7 +51,7 @@ export default class MovingCursor extends Component {
 
 	updateCursorPosition(event) {
 		this.setState({ mouseX: event.clientX, mouseY: event.clientY })
-		this.transformCursor()
+		//this.transformCursor()
 	}
 
 	transformCursor() {

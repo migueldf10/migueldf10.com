@@ -7,6 +7,7 @@ import Img from 'gatsby-image'
 import styled from 'styled-components'
 import MEDIA from '../utils/mediaTemplates'
 import ArticleGridItem from '../components/articleGridItem'
+import PortfolioGridItem from '../components/portfolioGridItem'
 
 const ImageWrapper = styled.div`
 	.gatsby-image-wrapper {
@@ -17,15 +18,16 @@ const ImageWrapper = styled.div`
 	top: 32px;
 	margin: 0 0 auto 0;
 	${MEDIA.PHONE`
-    width: 80%;
-    position: static;
-    text-align: center;
-    margin: 32px auto;
-    .gatsby-image-wrapper {
-      height: 40vh;
-    }
+		width: 100%;
+		padding:16px;
+		position: static;
+		text-align: center;
+		margin: 32px auto;
+		.gatsby-image-wrapper {
+		height: 40vh;
+		}
 
-  `}
+  	`}
 `
 
 const Container = styled.div`
@@ -58,12 +60,18 @@ const Content = styled.div`
 	`}
 `
 
+const PortfolioGrid = styled.div`
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	padding: 32px;
+`
 class BlogIndex extends React.Component {
 	render() {
 		const { data } = this.props
 		const siteTitle = data.site.siteMetadata.title
-		const posts = data.allMarkdownRemark.edges
-		// const imgs = data.allFile.nodes
+		const posts = data.articles.edges
+		const portfolios = data.portfolio.edges
 
 		return (
 			<Layout
@@ -74,10 +82,23 @@ class BlogIndex extends React.Component {
 				<SEO title="All posts" />
 				<Header title="Hello, its Miguel Domenech">
 					<p>
-						I’m a freelance web designer & developer living in
+						A freelance web designer & web developer living in
 						Amsterdam.
 					</p>
 				</Header>
+				<Container>
+					<PortfolioGrid>
+						<h2>Portfolio</h2>
+						{portfolios.map(({ node }) => {
+							return (
+								<PortfolioGridItem
+									key={node.fields.slug}
+									node={node}
+								/>
+							)
+						})}
+					</PortfolioGrid>
+				</Container>
 				<Container>
 					<Content>
 						<ImageWrapper>
@@ -85,7 +106,9 @@ class BlogIndex extends React.Component {
 								fluid={data.profileImg.childImageSharp.fluid}
 							/>
 						</ImageWrapper>
+
 						<div className="blogPosts">
+							<h2>Blog</h2>
 							{posts.map(({ node }) => {
 								return (
 									<ArticleGridItem
@@ -122,7 +145,10 @@ export const pageQuery = graphql`
 				title
 			}
 		}
-		allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+		articles: allMarkdownRemark(
+			filter: { frontmatter: { type: { ne: "photobook" } } }
+			sort: { fields: [frontmatter___date], order: DESC }
+		) {
 			edges {
 				node {
 					excerpt
@@ -134,6 +160,29 @@ export const pageQuery = graphql`
 						title
 						description
 						tags
+					}
+				}
+			}
+		}
+		portfolio: allMarkdownRemark(
+			filter: { frontmatter: { type: { eq: "photobook" } } }
+			sort: { fields: [frontmatter___date], order: DESC }
+		) {
+			edges {
+				node {
+					fields {
+						slug
+					}
+					frontmatter {
+						title
+						tags
+						img {
+							childImageSharp {
+								fluid(maxWidth: 2600, maxHeight: 2600) {
+									...GatsbyImageSharpFluid
+								}
+							}
+						}
 					}
 				}
 			}

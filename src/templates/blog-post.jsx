@@ -9,7 +9,7 @@ import ArticleNavigation from '../components/articleNavigation'
 
 const ArticleContainer = styled.article`
 	background: ${props => props.theme.bg};
-	padding: 1rem;
+	padding: 0.5rem 1rem;
 `
 
 const Header = styled.header`
@@ -19,28 +19,39 @@ const Header = styled.header`
 	flex-direction: row-reverse;
 	width: 100%;
 	box-sizing: border-box;
-	background: white;
+	background: ${props => props.theme.bgLight};
 	h1 {
-		font-variation-settings: 'wdth' 200, 'wght' 700;
+		font-variation-settings: 'wdth' 160, 'wght' 700;
 		letter-spacing: -4px;
+		font-size: 1.9rem;
 	}
-	${MEDIA.TABLET`
-		flex-direction: column;
-	`};
 	.column {
 		display: block;
 		height: auto;
 		width: 50%;
 		&.column-one {
-			padding-left: 0.5rem;
+			padding: 0 1rem;
 		}
 		&.column-two {
-			padding-right: 0.5rem;
+			padding-right: 0;
 		}
 	}
+	.meta {
+		padding: 1rem 0;
+		font-size: 0.8rem;
+		font-variation-settings: 'wdth' 80, 'wght' 700;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+	}
 	${MEDIA.TABLET`
+		flex-direction: column;
 		.column{
 			width: 100%;
+			
+		}
+		h1{
+			font-size:1.6rem;
 		}
 	`};
 `
@@ -48,6 +59,7 @@ const Header = styled.header`
 const ArticleBody = styled.div`
 	max-width: 40rem;
 	margin: auto;
+	padding-bottom: 5rem;
 `
 
 class BlogPostTemplate extends React.Component {
@@ -68,10 +80,10 @@ class BlogPostTemplate extends React.Component {
 							<blockquote>
 								{post.frontmatter.description || post.excerpt}
 							</blockquote>
-							<p>
-								Article by Miguel Domenech{' '}
-								{post.frontmatter.date}
-							</p>
+							<div className="meta">
+								<span>Article by Miguel Domenech </span>
+								<span>{post.frontmatter.date}</span>
+							</div>
 						</div>
 						<div className="column column-two">
 							<Img

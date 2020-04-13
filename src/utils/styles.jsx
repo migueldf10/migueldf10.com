@@ -8,6 +8,8 @@ const Styles = createGlobalStyle`
 		text-decoration: inherit;
 		color: ${props => props.theme.fg};
 		cursor: none!important;
+		box-sizing: border-box;
+
 	}
 	:root {
 		font-size: 18px;

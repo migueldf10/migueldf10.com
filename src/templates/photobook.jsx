@@ -5,10 +5,27 @@ import Layout from '../components/layout'
 import SEO from '../components/seo'
 import MEDIA from '../utils/mediaTemplates'
 import styled from 'styled-components'
-import Header from '../components/header'
 import ArticleNavigation from '../components/articleNavigation'
 
+const PhotoBookHeader = styled.div`
+	display: flex;
+	flex-direction: row;
+	padding: 32px;
+	align-items: center;
+	.column {
+		padding: 32px;
+	}
+	h1 {
+		width: 50%;
+		font-variation-settings: 'wdth' 140, 'wght' 900;
+		letter-spacing: -1px;
+	}
+`
+const Meta = styled.div`
+	font-size: 1.3rem;
+`
 const Article = styled.article`
+	background-color: ${props => props.theme.bg};
 	img {
 		width: auto;
 		height: auto;
@@ -40,16 +57,18 @@ const Article = styled.article`
 		h2,
 		h3,
 		h4,
-		h5 {
+		h5,
+		p,
+		span {
 			display: block;
 			min-height: 30vh;
 			max-width: 50%;
 			margin: auto;
 			${MEDIA.PHONE`
-        max-width: 90%;
-        margin-bottom: 32px;
+				max-width: 90%;
+				margin-bottom: 32px;
 
-        `}
+			`}
 		}
 	}
 	${MEDIA.PHONE`
@@ -73,27 +92,6 @@ const Article = styled.article`
   `}
 `
 class PhotobookTemplate extends React.Component {
-	constructor(props) {
-		super(props)
-		this.state = {
-			scrollTop: 0,
-		}
-	}
-	componentDidMount() {
-		window.addEventListener('scroll', this.handleScroll)
-	}
-
-	componentWillUnmount() {
-		window.removeEventListener('scroll', this.handleScroll)
-	}
-
-	handleScroll = ev => {
-		let scrollTopVal = window.scrollY
-		this.setState({
-			scrollTop: scrollTopVal,
-		})
-	}
-
 	render() {
 		const post = this.props.data.markdownRemark
 		const siteTitle = this.props.data.site.siteMetadata.title
@@ -110,11 +108,13 @@ class PhotobookTemplate extends React.Component {
 					description={post.frontmatter.description || post.excerpt}
 				/>
 				<Article>
-					<Header
-						title={post.frontmatter.title}
-						subtitle={post.frontmatter.description || post.excerpt}
-						date={post.frontmatter.date}
-					/>
+					<PhotoBookHeader>
+						<h1>{post.frontmatter.title}</h1>
+						<Meta>
+							{post.frontmatter.description || post.excerpt}
+							{post.frontmatter.date}
+						</Meta>
+					</PhotoBookHeader>
 					<section dangerouslySetInnerHTML={{ __html: post.html }} />
 					<footer>
 						<Bio />

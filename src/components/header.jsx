@@ -5,6 +5,7 @@ import styled from 'styled-components'
 const HeaderContainer = styled.header`
 	width: 100%;
 	background: ${props => props.theme.bg};
+	padding: 16px;
 	h1 {
 		margin: 0;
 		padding: 0;

@@ -32,9 +32,9 @@ export const Content = styled.div`
 		.column{
 			max-width: 100%;
 			p{
-				font-size:1.2rem;
+				font-size:.8rem;
 				letter-spacing:0px;
-				font-variation-settings: 'wdth' 80, 'wght' 500;
+				font-variation-settings: 'wdth' 120, 'wght' 500;
 
 			}
 		}
@@ -115,7 +115,7 @@ const Bio = () => {
 							marginBottom: '1.5rem',
 						}}
 					/>
-					<h2>Contact information</h2>
+					<h2 id="contactBio">Contact information</h2>
 					<p>
 						In case you have an idea or proposal, send me an email
 						and we can share impressions!
