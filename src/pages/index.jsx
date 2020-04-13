@@ -1,39 +1,13 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-
-import Bio from '../components/bio'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
-// import { rhythm, scale } from "../utils/typography"
 import Header from '../components/header'
 import Img from 'gatsby-image'
 import styled from 'styled-components'
-// import ImageZoom from "react-medium-image-zoom"
 import MEDIA from '../utils/mediaTemplates'
 import ArticleGridItem from '../components/articleGridItem'
-const Content = styled.div`
-	max-width: 1080px;
-	margin: auto;
-	position: relative;
-	display: flex;
-	flex-direction: row;
-	background-color: white;
-	/* margin: auto; */
 
-	.blogPosts {
-		width: 60%;
-		display: inline-block;
-		padding-left: 32px;
-	}
-	${MEDIA.PHONE`
-		flex-direction: column;
-		.blogPosts{
-			padding:16px;
-			width: auto;
-			box-sizing: border-box;
-		}
-	`}
-`
 const ImageWrapper = styled.div`
 	.gatsby-image-wrapper {
 		height: 70vh;
@@ -52,6 +26,36 @@ const ImageWrapper = styled.div`
     }
 
   `}
+`
+
+const Container = styled.div`
+	padding: 100px 0px;
+	background: ${props => props.theme.bg};
+`
+
+const Content = styled.div`
+	max-width: 1080px;
+	margin: auto;
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	background-color: ${props => props.theme.bgLight};
+
+	/* margin: auto; */
+
+	.blogPosts {
+		width: 60%;
+		display: inline-block;
+		padding-left: 32px;
+	}
+	${MEDIA.PHONE`
+		flex-direction: column;
+		.blogPosts{
+			padding:16px;
+			width: auto;
+			box-sizing: border-box;
+		}
+	`}
 `
 
 class BlogIndex extends React.Component {
@@ -74,23 +78,25 @@ class BlogIndex extends React.Component {
 						Amsterdam.
 					</p>
 				</Header>
-				<Content>
-					<ImageWrapper>
-						<Img fluid={data.profileImg.childImageSharp.fluid} />
-					</ImageWrapper>
-					<div className="blogPosts">
-						{posts.map(({ node }) => {
-							return (
-								<ArticleGridItem
-									key={node.fields.slug}
-									node={node}
-								/>
-							)
-						})}
-					</div>
-				</Content>
-
-				<Bio />
+				<Container>
+					<Content>
+						<ImageWrapper>
+							<Img
+								fluid={data.profileImg.childImageSharp.fluid}
+							/>
+						</ImageWrapper>
+						<div className="blogPosts">
+							{posts.map(({ node }) => {
+								return (
+									<ArticleGridItem
+										key={node.fields.slug}
+										node={node}
+									/>
+								)
+							})}
+						</div>
+					</Content>
+				</Container>
 			</Layout>
 		)
 	}

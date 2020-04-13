@@ -3,39 +3,22 @@ import MEDIA from '../utils/mediaTemplates'
 import styled from 'styled-components'
 
 const HeaderContainer = styled.header`
-	position: relative;
-	max-width: 100%;
-	margin: auto;
-	top: 0px;
-	z-index: 9;
-	margin-bottom: 200px;
-	p,
-	span,
-	h1,
-	h2,
-	h3,
-	h4,
-	a {
-		color: inherit;
-		line-height: 1;
-	}
+	width: 100%;
+	background: ${props => props.theme.bg};
 	h1 {
 		margin: 0;
-		font-size: 2.8rem;
+		padding: 0;
 		font-family: 'Inconsolata';
 		position: relative;
 		text-transform: uppercase;
 		font-variation-settings: 'wdth' 200, 'wght' 500;
-		color: white;
+		color: ${props => props.theme.bgLight};
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		width: 100%;
 		height: 100%;
 		text-align: center;
-		animation-name: weight;
-		animation-duration: 8s;
-		animation-iteration-count: infinite;
 		text-shadow: -1px -1px 0px rgba(255, 255, 255, 0.7),
 			1px -1px 0px rgba(255, 255, 255, 0.7),
 			-1px 1px 0px rgba(255, 255, 255, 0.7),
@@ -72,29 +55,47 @@ const HeaderContainer = styled.header`
 
 	p {
 		text-align: center;
-		font-size: 2.2rem;
+		font-size: 1.4rem;
 		line-height: 1;
 		margin: 0px;
-		margin-top: 50px;
+		padding: 80px 0 0 0;
 		font-variation-settings: 'wdth' 120, 'wght' 400;
+		letter-spacing: -1.5px;
 	}
-	margin-top: 60px;
-	${MEDIA.MIN_TABLET`
-		max-width: 80%;
-		margin-top: 100px;
-		h1 {
-			font-size: 5rem;
-		}
-		h2 {
-			font-size: 4rem;
-		}
-		p {
-			margin-top: 120px;
+	h1 {
+		font-size: 1.9rem;
+	}
+	${MEDIA.MIN_MINIPHONE`
+		h1{
 			font-size: 2.5rem;
 		}
 	`}
+
+	${MEDIA.MIN_TABLET`
+
+		.column {
+			padding-top: 100px;
+			max-width: 80%;
+			
+		}
+
+
+		h1 {
+			font-size: 5rem;
+			animation-name: weight;
+			animation-duration: 8s;
+			animation-iteration-count: infinite;
+			padding: 0;
+			
+		}
+		p {
+			padding: 120px 0;
+			font-size: 2.5rem;
+		}
+		`}
+	padding-top: 60px;
 	.column {
-		/* centra ahora. */
+		margin: auto;
 	}
 `
 class Header extends React.Component {

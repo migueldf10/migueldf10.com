@@ -1,18 +1,26 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import Img from 'gatsby-image'
-
-import Bio from './bio'
-import Layout from './layout'
-import SEO from './seo'
 import MEDIA from '../utils/mediaTemplates'
 import styled from 'styled-components'
 
+const ArticleNavigationContainer = styled.div`
+	border-top: 1px solid ${props => props.theme.fgLight};
+	margin-top: 3rem;
+	a {
+		transition: 0.5s;
+		font-variation-settings: 'wdth' 100, 'wght' 700;
+		letter-spacing: 0px;
+		:hover {
+			font-variation-settings: 'wdth' 130, 'wght' 300;
+			letter-spacing: -2px;
+		}
+	}
+`
 class ArticleNavigation extends React.Component {
 	render() {
 		const { previous, next } = this.props
 		return (
-			<nav>
+			<ArticleNavigationContainer as="nav">
 				<ul
 					style={{
 						display: `flex`,
@@ -37,7 +45,7 @@ class ArticleNavigation extends React.Component {
 						)}
 					</li>
 				</ul>
-			</nav>
+			</ArticleNavigationContainer>
 		)
 	}
 }

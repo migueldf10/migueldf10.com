@@ -8,7 +8,6 @@ const Styles = createGlobalStyle`
 		text-decoration: inherit;
 		color: ${props => props.theme.fg};
 		cursor: none!important;
-
 	}
 	:root {
 		font-size: 18px;
@@ -21,6 +20,10 @@ const Styles = createGlobalStyle`
 			cursor: none !important;
 		}
 
+	}
+	blockquote{
+		padding:0px;
+		margin:0px;
 	}
 
 `

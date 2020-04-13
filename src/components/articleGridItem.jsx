@@ -6,13 +6,26 @@ import styled from 'styled-components'
 const ArticleGridItemContainer = styled.article`
 	max-width: 100%;
 	a {
-		color: ${props => props.theme.fg};
+		display: inline-block;
+		color: ${props => props.theme.ctaFg};
+		background-color: ${props => props.theme.ctaBg};
+		padding: 10px 20px;
+		border-radius: 20px;
 		text-transform: none;
 		text-decoration: none;
+		font-variation-settings: 'wdth' 100, 'wght' 600;
+		letter-spacing: 1px;
+		transition: 0.5s;
+		:hover {
+			font-variation-settings: 'wdth' 140, 'wght' 900;
+			letter-spacing: -1px;
+		}
 	}
 	h3 {
 		font-size: 30px;
-		font-weight: 600;
+		font-variation-settings: 'wdth' 160, 'wght' 600;
+		letter-spacing: -2px;
+		margin: 1rem 0 1rem;
 	}
 	.button {
 		color: ${props => props.theme.fg};
@@ -20,15 +33,21 @@ const ArticleGridItemContainer = styled.article`
 	}
 	p {
 		margin: 0px;
-		margin-bottom: 12px;
+		padding-bottom: 12px;
 		line-height: 1.2;
 	}
-	border-bottom: 1px solid #999;
-	margin-bottom: 18px;
-	padding: 16px;
+	border-bottom: 1px solid ${props => props.theme.fgLight};
+	padding: 18px 32px 16px;
+	&:last-child {
+		border: none;
+	}
 	${MEDIA.PHONE`
-    padding: 0px;
-  `}
+    	padding: 18px 0px 16px;
+		h3{
+			font-variation-settings: 'wdth' 80, 'wght' 600;
+			letter-spacing: 0px;
+		}
+  	`}
 `
 const Header = styled.div`
 	text-transform: uppercase;
@@ -43,10 +62,8 @@ const Header = styled.div`
 			font-weight: 300;
 		}
 		${MEDIA.PHONE`
-        font-size: 12px;
-        margin-right: 8px;
-
-    `}
+        	font-size: 12px;
+    	`}
 	}
 	margin-bottom: 5px;
 `
@@ -57,29 +74,26 @@ export default class ArticleGridElement extends React.Component {
 
 		return (
 			<ArticleGridItemContainer>
-				<Link style={{ boxShadow: `none` }} to={node.fields.slug}>
-					{/* <header> */}
-					<Header>
-						<small>{node.frontmatter.date}</small>
-						{node.frontmatter.tags
-							? node.frontmatter.tags.map((tag, index) => (
-									<small key={index}>{tag}</small>
-							  ))
-							: null}
-					</Header>
-					<h3>{title}</h3>
-					{/* </header> */}
-					<section>
-						<p
-							dangerouslySetInnerHTML={{
-								__html:
-									node.frontmatter.description ||
-									node.excerpt,
-							}}
-						/>
-					</section>
-					<span className="button">Read Article</span>
-				</Link>
+				{/* <header> */}
+				<Header>
+					<small>{node.frontmatter.date}</small>
+					{node.frontmatter.tags
+						? node.frontmatter.tags.map((tag, index) => (
+								<small key={index}>{tag}</small>
+						  ))
+						: null}
+				</Header>
+				<h3>{title}</h3>
+				{/* </header> */}
+				<section>
+					<p
+						dangerouslySetInnerHTML={{
+							__html:
+								node.frontmatter.description || node.excerpt,
+						}}
+					/>
+				</section>
+				<Link to={node.fields.slug}>Read Article</Link>
 			</ArticleGridItemContainer>
 		)
 	}

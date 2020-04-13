@@ -4,24 +4,33 @@ import MEDIA from '../utils/mediaTemplates'
 import styled from 'styled-components'
 
 const NavBarContainer = styled.header`
-	position: relative;
-	color: gray;
+	/*position: relative;*/
+	color: ${props => props.theme.fg};
 	z-index: 9;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	padding: 10px 32px;
+	background: ${props => props.theme.bg};
 	a {
 		text-decoration: none;
 		text-transform: uppercase;
+		font-variation-settings: 'wdth' 100, 'wght' 600;
+		letter-spacing: 1px;
+		transition: 0.5s;
+		:hover {
+			font-variation-settings: 'wdth' 140, 'wght' 900;
+			letter-spacing: -1px;
+		}
 	}
 	.contactMobile {
 		display: none;
 	}
 	.headerTitles {
 		font-size: 1rem;
+		/*font-variation-settings: 'wdth' 100, 'wght' 600;*/
 	}
-	${MEDIA.TABLET`
+	${MEDIA.PHONE`
 		a,span,h1,h2,h3{
 			font-size: 18px;
 		}
@@ -41,9 +50,12 @@ const NavBarContainer = styled.header`
 `
 
 const ContactPill = styled.div`
-	background: white;
+	background: ${props => props.theme.bgLight};
 	border-radius: 40px;
 	padding: 10px 12px;
+	span {
+		color: ${props => props.theme.fgLight};
+	}
 
 	box-shadow: -1px -1px 0px rgba(255, 255, 255, 0.5),
 		1px -1px 0px rgba(255, 255, 255, 0.5),
@@ -72,7 +84,7 @@ class NavBar extends React.Component {
 		} else {
 			header = (
 				<h3 className="headerTitles">
-					<Link to={`/`}>{title}</Link>
+					<Link to={`/`}>{'← ' + title}</Link>
 				</h3>
 			)
 		}
@@ -81,15 +93,13 @@ class NavBar extends React.Component {
 				{header}
 				<ContactPill>
 					<span className="contactDesktop">
-						<span>
-							<b>More</b> /
-						</span>
+						<span className="title">More /</span>
 						{` `}
 
 						<a href={`https://linkedin.com/in/migueldf10`}>
 							Linkedin
 						</a>
-						{` / `}
+						<span> / </span>
 						<a href={`mailto:migueldf10@gmail.com?subject=Hey!`}>
 							Email
 						</a>
