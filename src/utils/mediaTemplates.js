@@ -16,7 +16,7 @@ import { css } from 'styled-components';
 const BREAKPOINTS = {
 	DESKTOP: 992,
 	TABLET: 768,
-	PHONE: 420,
+	PHONE: 520,
 	MINIPHONE: 321,
 };
 

@@ -48,7 +48,7 @@ const Content = styled.div`
 		display: inline-block;
 		padding-left: 32px;
 	}
-	${MEDIA.PHONE`
+	${MEDIA.TABLET`
 		flex-direction: column;
 		.blogPosts{
 			padding:16px;

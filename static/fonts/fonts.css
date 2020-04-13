@@ -1,4 +1,4 @@
-@font-face {
+/*@font-face {
 	font-family: 'Science Gothic';
 	src: url('ScienceGothic.ttf') format('truetype');
 	font-display: swap;
@@ -14,7 +14,7 @@
 @font-face {
 	font-family: 'League Spartan Variable';
 	src: url('LeagueSpartanVariable.ttf') format('truetype');
-}
+}*/
 @font-face {
 	font-family: 'Inconsolata';
 	src: url('Inconsolata-VF.ttf') format('truetype');
