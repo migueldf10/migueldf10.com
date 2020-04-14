@@ -31,7 +31,7 @@ const ImageWrapper = styled.div`
 `
 
 const Container = styled.div`
-	padding: 100px 0px;
+	padding: 100px 1rem;
 	background: ${props => props.theme.bg};
 `
 
@@ -48,7 +48,7 @@ const BlogWrapper = styled.div`
 	.blogPosts {
 		width: 60%;
 		display: inline-block;
-		padding-left: 32px;
+		padding: 0 16px;
 	}
 	${MEDIA.TABLET`
 		flex-direction: column-reverse;
@@ -66,7 +66,7 @@ const PortfolioGrid = styled.div`
 	flex-wrap: wrap;
 	padding: 32px;
 	${MEDIA.PHONE`
-		padding:0.5rem;
+		padding:0;
 	`}
 `
 

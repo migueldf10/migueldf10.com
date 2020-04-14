@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-
+import MEDIA from '../utils/mediaTemplates'
 const SwitcherContainer = styled.button`
 	position: fixed;
 	right: 16px;
@@ -19,6 +19,9 @@ const SwitcherContainer = styled.button`
 		color: ${props => props.theme.fg};
 		font-variation-settings: 'wdth' 120, 'wght' 600;
 	}
+	${MEDIA.PHONE`
+		font-size:0.7rem;
+	`}
 `
 
 export default class LightSwitcher extends Component {

@@ -8,7 +8,7 @@ const PortfolioGridItemContainer = styled(Link)`
 	width: 50%;
 	padding: 1rem;
 	${MEDIA.PHONE`
-	padding: .5rem;
+		padding: 0.5rem 0rem;
 		width:100%;
 	`}
 `
