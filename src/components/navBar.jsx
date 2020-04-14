@@ -43,7 +43,7 @@ const ContactPill = styled.div`
 	border-radius: 40px;
 	padding: 10px 12px;
 	.title {
-		color: ${props => props.theme.bgLight};
+		color: ${props => props.theme.fgLight};
 	}
 	.superCta {
 		position: relative;
@@ -60,9 +60,10 @@ const ContactPill = styled.div`
 			z-index: 1;
 			border-radius: 40px;
 			background-color: ${props => props.theme.ctaBg};
-			transform: translate(-50%, -50%);
-			top: 50%;
-			right: 50%;
+			/*transform: translate(0 -50%);*/
+			/*right: 50%;*/
+			top: -6px;
+			right: -4px;
 			box-shadow: 0px 0px 4px #00ee00aa, 0px 0px 2px #00ee00cc,
 				0px 0px 7px #00ee0088;
 		}
@@ -93,9 +94,7 @@ class NavBar extends React.Component {
 				{header}
 				<ContactPill>
 					<span>
-						<span className="title" className="contactDesktop">
-							Contact /
-						</span>
+						<span className="title contactDesktop">Contact /</span>
 						{` `}
 
 						<a
@@ -104,7 +103,7 @@ class NavBar extends React.Component {
 						>
 							LinkedIn
 						</a>
-						<span className="contactDesktop"> / </span>
+						<span className="contactDesktop title"> / </span>
 						<a
 							href={`mailto:migueldf10@gmail.com?subject=Hey!`}
 							className="superCta"

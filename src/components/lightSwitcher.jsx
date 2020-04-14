@@ -19,6 +19,9 @@ const SwitcherContainer = styled.button`
 		color: ${props => props.theme.fg};
 		font-variation-settings: 'wdth' 120, 'wght' 600;
 	}
+	:focus {
+		outline: none;
+	}
 	${MEDIA.PHONE`
 		font-size:0.7rem;
 	`}
