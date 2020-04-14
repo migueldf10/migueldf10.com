@@ -12,7 +12,7 @@ const HeaderContainer = styled.header`
 		font-family: 'Inconsolata';
 		position: relative;
 		text-transform: uppercase;
-		font-variation-settings: 'wdth' 200, 'wght' 500;
+		font-variation-settings: 'wdth' 200, 'wght' 700;
 		color: ${props => props.theme.bgLight};
 		display: flex;
 		align-items: center;
@@ -60,8 +60,8 @@ const HeaderContainer = styled.header`
 		line-height: 1;
 		margin: 0px;
 		padding: 80px 0 0 0;
-		font-variation-settings: 'wdth' 120, 'wght' 400;
-		letter-spacing: -1.5px;
+		font-variation-settings: 'wdth' 160, 'wght' 400;
+		letter-spacing: -3px;
 	}
 	h1 {
 		font-size: 1.9rem;
@@ -83,15 +83,17 @@ const HeaderContainer = styled.header`
 
 		h1 {
 			font-size: 5rem;
-			animation-name: weight;
-			animation-duration: 8s;
-			animation-iteration-count: infinite;
+			//animation-name: weight;
+			//animation-duration: 8s;
+			//animation-iteration-count: infinite;
 			padding: 0;
 			
 		}
 		p {
 			padding: 120px 0;
-			font-size: 2.5rem;
+			font-size: 2rem;
+			letter-spacing: -5px;
+
 		}
 		`}
 	padding-top: 60px;

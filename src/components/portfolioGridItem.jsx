@@ -6,58 +6,69 @@ import Img from 'gatsby-image'
 
 const PortfolioGridItemContainer = styled(Link)`
 	width: 50%;
+	padding: 1rem;
+	${MEDIA.PHONE`
+	padding: .5rem;
+		width:100%;
+	`}
+`
+
+const Header = styled.div`
+	transition: 0.5s;
+	background: ${props => props.theme.bgLight};
+	padding: 18px;
+
 	h3 {
-		font-size: 30px;
-		font-variation-settings: 'wdth' 160, 'wght' 600;
-		letter-spacing: -2px;
-		margin: 1rem 0 1rem;
+		font-size: 20px;
+		font-variation-settings: 'wdth' 100, 'wght' 700;
+		letter-spacing: 2px;
+		margin: 1rem 0;
+		transition: 0.7s;
 	}
-	.button {
-		color: ${props => props.theme.fg};
-		font-weight: 700;
+	small {
+		text-transform: uppercase;
+		font-variation-settings: 'wdth' 100, 'wght' 300;
+		transition: 0.9s;
 	}
-	p {
-		margin: 0px;
-		padding-bottom: 12px;
-		line-height: 1.2;
-	}
-	border-bottom: 1px solid ${props => props.theme.fgLight};
-	padding: 18px 32px 16px;
+
 	&:hover {
-		background: ${props => props.theme.fgAccent};
-	}
-	&:last-child {
-		border: none;
+		background: ${props => props.theme.bgAccent};
+		h3 {
+			font-variation-settings: 'wdth' 200, 'wght' 900;
+			letter-spacing: -4px;
+		}
+		small {
+			font-variation-settings: 'wdth' 100, 'wght' 700;
+		}
 	}
 	${MEDIA.PHONE`
-		padding: 18px 0px 16px;
-		width: 100%;
 		h3{
 			font-variation-settings: 'wdth' 80, 'wght' 600;
 			letter-spacing: 0px;
 		}
-	  `}
+	`}
 `
-
-const Header = styled.div`
-	text-transform: uppercase;
-	small {
-		margin-right: 16px;
-		display: inline-block;
-		font-weight: 700;
-		&:first-child {
-			color: #777;
-		}
-		&:last-child {
-			font-weight: 300;
-		}
-		${MEDIA.PHONE`
-        	font-size: 12px;
-    	`}
+const TagContainer = styled.div`
+	overflow: auto;
+	display: flex;
+	::-webkit-scrollbar {
+		height: 2px;
 	}
-	margin-bottom: 5px;
-`
+	::-webkit-scrollbar-track {
+		background-color: ${props => props.theme.bgLight};
+	}
 
+	::-webkit-scrollbar-thumb {
+		background-color: ${props => props.theme.bgAccent};
+	}
+	small {
+		margin: 0px;
+		margin-right: 1rem;
+		white-space: nowrap;
+		display: inline-block;
+		padding-bottom: 0.5rem;
+	}
+`
 export default class PortfolioGridItem extends React.Component {
 	render() {
 		const { node } = this.props
@@ -71,14 +82,16 @@ export default class PortfolioGridItem extends React.Component {
 							fluid={node.frontmatter.img.childImageSharp.fluid}
 						/>
 					)}
-					<small>{node.frontmatter.date}</small>
-					{node.frontmatter.tags
-						? node.frontmatter.tags.map((tag, index) => (
+					<h3>{title}</h3>
+
+					{node.frontmatter.tags ? (
+						<TagContainer>
+							{node.frontmatter.tags.map((tag, index) => (
 								<small key={index}>{tag}</small>
-						  ))
-						: null}
+							))}
+						</TagContainer>
+					) : null}
 				</Header>
-				<h3>{title}</h3>
 			</PortfolioGridItemContainer>
 		)
 	}

@@ -22,9 +22,9 @@ const ImageWrapper = styled.div`
 		padding:16px;
 		position: static;
 		text-align: center;
-		margin: 32px auto;
+		margin: 0px auto;
 		.gatsby-image-wrapper {
-		height: 40vh;
+			height: 60vh;
 		}
 
   	`}
@@ -35,9 +35,9 @@ const Container = styled.div`
 	background: ${props => props.theme.bg};
 `
 
-const Content = styled.div`
+const BlogWrapper = styled.div`
 	max-width: 1080px;
-	margin: auto;
+	margin: 32px auto;
 	position: relative;
 	display: flex;
 	flex-direction: row;
@@ -51,7 +51,7 @@ const Content = styled.div`
 		padding-left: 32px;
 	}
 	${MEDIA.TABLET`
-		flex-direction: column;
+		flex-direction: column-reverse;
 		.blogPosts{
 			padding:16px;
 			width: auto;
@@ -65,7 +65,22 @@ const PortfolioGrid = styled.div`
 	flex-direction: row;
 	flex-wrap: wrap;
 	padding: 32px;
+	${MEDIA.PHONE`
+		padding:0.5rem;
+	`}
 `
+
+const SectionTitle = styled.div`
+	padding: 0 32px;
+	h2 {
+		text-align: center;
+		margin: 0px;
+		font-variation-settings: 'wdth' 200, 'wght' 700;
+		letter-spacing: -4px;
+		color: ${props => props.theme.fgLight};
+	}
+`
+
 class BlogIndex extends React.Component {
 	render() {
 		const { data } = this.props
@@ -80,15 +95,17 @@ class BlogIndex extends React.Component {
 				type="fullwidth"
 			>
 				<SEO title="All posts" />
-				<Header title="Hello, its Miguel Domenech">
+				<Header title="Hello, it's Miguel Domenech">
 					<p>
-						A freelance web designer & web developer living in
-						Amsterdam.
+						A freelance web designer, developer and marketer living
+						in Amsterdam.
 					</p>
 				</Header>
 				<Container>
+					<SectionTitle>
+						<h2>Projects</h2>
+					</SectionTitle>
 					<PortfolioGrid>
-						<h2>Portfolio</h2>
 						{portfolios.map(({ node }) => {
 							return (
 								<PortfolioGridItem
@@ -100,7 +117,10 @@ class BlogIndex extends React.Component {
 					</PortfolioGrid>
 				</Container>
 				<Container>
-					<Content>
+					<SectionTitle>
+						<h2>Blog</h2>
+					</SectionTitle>
+					<BlogWrapper>
 						<ImageWrapper>
 							<Img
 								fluid={data.profileImg.childImageSharp.fluid}
@@ -108,7 +128,6 @@ class BlogIndex extends React.Component {
 						</ImageWrapper>
 
 						<div className="blogPosts">
-							<h2>Blog</h2>
 							{posts.map(({ node }) => {
 								return (
 									<ArticleGridItem
@@ -118,7 +137,7 @@ class BlogIndex extends React.Component {
 								)
 							})}
 						</div>
-					</Content>
+					</BlogWrapper>
 				</Container>
 			</Layout>
 		)
@@ -178,7 +197,7 @@ export const pageQuery = graphql`
 						tags
 						img {
 							childImageSharp {
-								fluid(maxWidth: 2600, maxHeight: 2600) {
+								fluid(maxWidth: 1200) {
 									...GatsbyImageSharpFluid
 								}
 							}

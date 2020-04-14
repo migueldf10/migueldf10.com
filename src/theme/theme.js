@@ -8,6 +8,7 @@ export const theme = {
 	bgAccent: "#DEDEDE",
 	ctaBg: "#00EE00",
 	ctaFg: "#002222",
+	cursor: "#880088",
 };
 // This theme swaps `fg` and `bg`
 export const invertTheme = () => ({
@@ -17,7 +18,8 @@ export const invertTheme = () => ({
 	bgLight: theme.fgAccent,
 	bg: theme.fg,
 	bgAccent: theme.fgLight,
-	ctaBg: "#002200",
-	ctaFg: "#FFF",
+	ctaBg: "#00AA00",
+	ctaFg: "#333",
+	cursor: theme.ctaBg,
 
 });

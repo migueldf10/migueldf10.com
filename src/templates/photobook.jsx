@@ -1,6 +1,5 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import Bio from '../components/bio'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import MEDIA from '../utils/mediaTemplates'
@@ -10,90 +9,76 @@ import ArticleNavigation from '../components/articleNavigation'
 const PhotoBookHeader = styled.div`
 	display: flex;
 	flex-direction: row;
-	padding: 32px;
 	align-items: center;
-	.column {
-		padding: 32px;
-	}
-	h1 {
-		width: 50%;
-		font-variation-settings: 'wdth' 140, 'wght' 900;
-		letter-spacing: -1px;
-	}
+	justify-content: space-between;
+	padding: 32px 0;
+
+	${MEDIA.PHONE`
+		flex-direction: column;
+
+		h1{
+			width: 100%;
+		}
+	`}
 `
+
 const Meta = styled.div`
 	font-size: 1.3rem;
 `
+
+const Title = styled.div`
+	width: 50%;
+	h1 {
+		font-variation-settings: 'wdth' 140, 'wght' 900;
+		letter-spacing: -1px;
+		margin: 0px;
+		padding-bottom: 1rem;
+	}
+
+	${MEDIA.PHONE`
+		width:100%;
+		padding: 0 0 32px;
+		h1{
+			width: 100%;
+		}
+	`}
+`
+
+const TagContainer = styled.div`
+	overflow: auto;
+	display: flex;
+	flex-wrap: wrap;
+
+	small {
+		margin: 0px;
+		text-transform: uppercase;
+
+		font-size: 0.7rem;
+		margin-right: 1rem;
+		display: inline;
+		word-break: break-word;
+		padding-bottom: 0.5rem;
+	}
+`
+
 const Article = styled.article`
+	padding: 32px;
+
 	background-color: ${props => props.theme.bg};
 	img {
 		width: auto;
 		height: auto;
 	}
-	.gatsby-resp-image-wrapper {
-		width: 100%;
-		/* height: 80vh; */
-		margin-bottom: 120px;
-		img {
-			height: auto !important;
-		}
-	}
-	.gatsby-resp-image-background-image {
-		max-width: 100%;
-		max-height: 80vh;
-		display: block;
-		margin: 0px;
-	}
-	.gatsby-resp-image-image {
-		/* top: 50%;
-        left: 50%;
-        transform: translate(-50%,-50%); */
-		width: auto;
-		height: auto;
-		max-height: 80vh;
-	}
-	section {
-		h1,
-		h2,
-		h3,
-		h4,
-		h5,
-		p,
-		span {
-			display: block;
-			min-height: 30vh;
-			max-width: 50%;
-			margin: auto;
-			${MEDIA.PHONE`
-				max-width: 90%;
-				margin-bottom: 32px;
 
-			`}
-		}
-	}
 	${MEDIA.PHONE`
-    .gatsby-resp-image-wrapper{
-        height: 60vh;
-        margin-bottom: 32px;
-    }
-    .gatsby-resp-image-background-image{
-        max-height: 60vh;
-
-    }
-    .gatsby-resp-image-image{
-        max-height: 60vh;
-    }
-    section{
-
-      p,h1,h2,h3,h4,h5,span{
-        min-height: 30vh;
-      }
-    }
-  `}
+		padding:16px;
+	`}
 `
+
 class PhotobookTemplate extends React.Component {
 	render() {
-		const post = this.props.data.markdownRemark
+		const { excerpt, html } = this.props.data.post
+		const { title, tags, description } = this.props.data.post.frontmatter
 		const siteTitle = this.props.data.site.siteMetadata.title
 		const { previous, next } = this.props.pageContext
 
@@ -103,24 +88,24 @@ class PhotobookTemplate extends React.Component {
 				title={siteTitle}
 				type="fullwidth"
 			>
-				<SEO
-					title={post.frontmatter.title}
-					description={post.frontmatter.description || post.excerpt}
-				/>
+				<SEO title={title} description={description || excerpt} />
 				<Article>
 					<PhotoBookHeader>
-						<h1>{post.frontmatter.title}</h1>
-						<Meta>
-							{post.frontmatter.description || post.excerpt}
-							{post.frontmatter.date}
-						</Meta>
+						<Title>
+							<h1>{title}</h1>
+							{tags ? (
+								<TagContainer>
+									{tags.map((tag, index) => (
+										<small key={index}>{tag}</small>
+									))}
+								</TagContainer>
+							) : null}
+						</Title>
+						<Meta>{description || excerpt}</Meta>
 					</PhotoBookHeader>
-					<section dangerouslySetInnerHTML={{ __html: post.html }} />
-					<footer>
-						<Bio />
-					</footer>
+					<div dangerouslySetInnerHTML={{ __html: html }} />
+					<ArticleNavigation previous={previous} next={next} />
 				</Article>
-				<ArticleNavigation previous={previous} next={next} />
 			</Layout>
 		)
 	}
@@ -136,7 +121,7 @@ export const photoboookQuery = graphql`
 				author
 			}
 		}
-		markdownRemark(fields: { slug: { eq: $slug } }) {
+		post: markdownRemark(fields: { slug: { eq: $slug } }) {
 			id
 			excerpt(pruneLength: 160)
 			html
@@ -144,9 +129,10 @@ export const photoboookQuery = graphql`
 				title
 				date(formatString: "MMMM DD, YYYY")
 				description
+				tags
 				img {
 					childImageSharp {
-						fluid(maxWidth: 2600, maxHeight: 2600) {
+						fluid(maxWidth: 1200) {
 							...GatsbyImageSharpFluid
 						}
 					}

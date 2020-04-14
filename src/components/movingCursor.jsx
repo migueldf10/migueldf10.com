@@ -9,7 +9,7 @@ const Cursor = styled.div`
 	left: -50%;
 	margin: -15px 0 0 -15px;
 	border-radius: 50%;
-	background-color: #880088;
+	background-color: ${props => props.theme.cursor};
 	backface-visibility: hidden;
 	transition: transform 0.2s ease-out;
 	mix-blend-mode: difference;
@@ -17,7 +17,7 @@ const Cursor = styled.div`
 	pointer-events: none;
 
 	&.is-moving {
-		transform: scale(0.8);
+		transform: scale(1.4);
 	}
 
 	.content_cursor {
@@ -51,7 +51,7 @@ export default class MovingCursor extends Component {
 
 	updateCursorPosition(event) {
 		this.setState({ mouseX: event.clientX, mouseY: event.clientY })
-		//this.transformCursor()
+		this.transformCursor()
 	}
 
 	transformCursor() {

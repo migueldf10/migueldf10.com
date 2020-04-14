@@ -10,7 +10,7 @@ const BioContainer = styled.div`
 `
 
 export const Content = styled.div`
-	padding: 140px 20px;
+	padding: 0px 20px 140px;
 	max-width: 60rem;
 	margin: auto;
 	display: flex;
@@ -61,6 +61,17 @@ export const Content = styled.div`
 	}
 `
 
+const SectionTitle = styled.div`
+	h2 {
+		text-align: left;
+		margin: 0px;
+		font-variation-settings: 'wdth' 200, 'wght' 700;
+		letter-spacing: -4px;
+		color: ${props => props.theme.fgLight};
+	}
+	padding-top: 42px;
+`
+
 const Bio = () => {
 	const data = useStaticQuery(graphql`
 		query BioQuery {
@@ -100,6 +111,9 @@ const Bio = () => {
 					/>
 				</div>
 				<div className="column ">
+					<SectionTitle>
+						<h2>About me</h2>
+					</SectionTitle>
 					<p>
 						My name is Miguel Domenech and I'm a freelancer web
 						designer & developer with passion for solving complex
@@ -110,12 +124,10 @@ const Bio = () => {
 						ambitious (and fun) projects where I could make a
 						difference.
 					</p>
-					<hr
-						style={{
-							marginBottom: '1.5rem',
-						}}
-					/>
-					<h2 id="contactBio">Contact information</h2>
+
+					<SectionTitle>
+						<h2 id="contactBio">Contact information</h2>
+					</SectionTitle>
 					<p>
 						In case you have an idea or proposal, send me an email
 						and we can share impressions!

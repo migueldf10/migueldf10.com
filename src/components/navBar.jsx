@@ -4,7 +4,6 @@ import MEDIA from '../utils/mediaTemplates'
 import styled from 'styled-components'
 
 const NavBarContainer = styled.header`
-	/*position: relative;*/
 	color: ${props => props.theme.fg};
 	z-index: 9;
 	display: flex;
@@ -14,7 +13,6 @@ const NavBarContainer = styled.header`
 	background: ${props => props.theme.bg};
 	a {
 		text-decoration: none;
-		/*text-transform: uppercase;*/
 		font-variation-settings: 'wdth' 100, 'wght' 600;
 		letter-spacing: 1px;
 		transition: 0.5s;
@@ -29,45 +27,46 @@ const NavBarContainer = styled.header`
 	.headerTitles {
 		font-size: 1rem;
 		text-transform: uppercase;
-		/*font-variation-settings: 'wdth' 100, 'wght' 600;*/
 	}
 	${MEDIA.PHONE`
 		a,span,h1,h2,h3{
-			font-size: 18px;
+			font-size: 17px;
 		}
-		.contactMobile{
-			display: inline-block;
 		
-		}
 		.contactDesktop{
 			display:none;
-		}
-	`}
-	${MEDIA.PHONE`
-		a,span,h1,h2,h3{
-			font-size: 14px;
 		}
 	`}
 `
 
 const ContactPill = styled.div`
-	background: ${props => props.theme.bgLight};
 	border-radius: 40px;
 	padding: 10px 12px;
-	span {
-		color: ${props => props.theme.fgLight};
+	.title {
+		color: ${props => props.theme.bgLight};
 	}
-
-	box-shadow: -1px -1px 0px rgba(255, 255, 255, 0.5),
-		1px -1px 0px rgba(255, 255, 255, 0.5),
-		-1px 1px 0px rgba(255, 255, 255, 0.5),
-		1px 1px 0px rgba(255, 255, 255, 0.5), -1px 2px 1px #a0a0a044,
-		-4px 8px 4px #a0a0a022, -5px 6px 5px #a0a0a022, -6px 12px 6px #a0a0a022,
-		-7px 13px 7px #a0a0a044, -8px 15px 8px #a0a0a022,
-		-9px 14px 6px #a0a0a022, -10px 19px 10px #a0a0a022,
-		-11px 12px 7px #a0a0a022, -12px 22px 12px #a0a0a011,
-		-21px 39px 21px #a0a0a011, 1px -1px 1px #00ee00ee,
-		3px -3px 3px #00ee0022;
+	.superCta {
+		position: relative;
+		span {
+			position: relative;
+			display: inline-block;
+			z-index: 3;
+		}
+		::after {
+			content: '';
+			height: 8px;
+			width: 8px;
+			position: absolute;
+			z-index: 1;
+			border-radius: 40px;
+			background-color: ${props => props.theme.ctaBg};
+			transform: translate(-50%, -50%);
+			top: 50%;
+			right: 50%;
+			box-shadow: 0px 0px 4px #00ee00aa, 0px 0px 2px #00ee00cc,
+				0px 0px 7px #00ee0088;
+		}
+	}
 `
 
 class NavBar extends React.Component {
@@ -93,21 +92,26 @@ class NavBar extends React.Component {
 			<NavBarContainer id="navBar">
 				{header}
 				<ContactPill>
-					<span className="contactDesktop">
-						<span className="title">More /</span>
+					<span>
+						<span className="title" className="contactDesktop">
+							Contact /
+						</span>
 						{` `}
 
-						<a href={`https://linkedin.com/in/migueldf10`}>
+						<a
+							href={`https://linkedin.com/in/migueldf10`}
+							className="contactDesktop"
+						>
 							LinkedIn
 						</a>
-						<span> / </span>
-						<a href={`mailto:migueldf10@gmail.com?subject=Hey!`}>
-							Email
+						<span className="contactDesktop"> / </span>
+						<a
+							href={`mailto:migueldf10@gmail.com?subject=Hey!`}
+							className="superCta"
+						>
+							<span>Email me</span>
 						</a>
 					</span>
-					<a href="#contactBio" className="contactMobile">
-						Contact
-					</a>
 				</ContactPill>
 			</NavBarContainer>
 		)
