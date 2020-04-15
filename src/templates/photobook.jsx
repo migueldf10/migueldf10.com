@@ -69,6 +69,7 @@ const Article = styled.article`
 		width: auto;
 		height: auto;
 	}
+	font-size: 0.7rem;
 
 	${MEDIA.PHONE`
 		padding:16px;
