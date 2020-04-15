@@ -1,7 +1,7 @@
 ---
 title: Bodegas Alsinac
 date: '2019-11-02T22:40:32.169Z'
-description: A succesful Cava producer, turning to become a DTC brand setting up their growth engine.
+description: Foundation for the online advertising of an stablish wine producer.
 img: 'alsinac-cover.png'
 type: photobook
 tags:
@@ -12,7 +12,7 @@ tags:
 
 ## The story
 
-### With over 45 years of experience in producing cava ( Spanish sparkling wine) Alsinac's team know everything about their product. From year 2013 on, they became a DTC brand. Now they were looking for stepping up their online results by performing conversion rate optimization on their landing pages, trying new strategies and learning fast by measuring the results.
+With over 45 years of experience in producing cava ( Spanish sparkling wine) Alsinac's team know everything about their product. From year 2013 on, they became a DTC brand. Now they were looking for stepping up their online results by performing conversion rate optimization on their landing pages, trying new strategies and learning fast by measuring the results.
 
 ![Logo][photo1]
 ![Logo][photo2]
@@ -22,15 +22,11 @@ tags:
 
 ## The challenge
 
-### Apart from creating highly measurable pages, they should perform to a variety of current campaigns with different purposes now, and keep working in the future whith new campaigns. So the result has to be Measurable, Reusable, Readaptable, Not technical personeel to modify or remix to create new campaigns in the future.\
+Apart from creating highly measurable pages, they should perform to a variety of current campaigns with different purposes now, and keep working in the future whith new campaigns. So the result has to be Measurable, Reusable, Readaptable, Not technical personeel to modify or remix to create new campaigns in the future.\
 
 ## The project
 
 We created 3 different landing page structures with for different campaigns, focusing on brand, on price and on customer care and live help. Those pages were composed of different blocks, with different features, and independant from each other, so they can be reused and edited by non technical people in the future. Our work is the foundation of a set of a marketing empowered
-
-### With all this challenges, the solution has been setting the number of online orders as the success metric, which cleant the path to know what was missing, such as direct communication tools, and what was non essential, like forms, big not high quality pictures or links to external pages to find information that could be included inside the modules.
-
-### The final proposal also included some premade landing pages, separating the audience in Brand followers , good price seekers and some steps in between, to have a clear winner for every campaign already running.
 
 [photo1]: alsinac-intro.png 'Cover'
 [photo2]: alsinac-presentation.png 'Cover'
