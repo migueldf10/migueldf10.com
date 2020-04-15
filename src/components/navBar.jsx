@@ -47,6 +47,10 @@ const ContactPill = styled.div`
 	}
 	.superCta {
 		position: relative;
+		padding-right: 24px;
+		margin-right: -24px;
+		padding-top: 8px;
+		margin-top: -8px;
 		span {
 			position: relative;
 			display: inline-block;
@@ -62,8 +66,8 @@ const ContactPill = styled.div`
 			background-color: ${props => props.theme.ctaBg};
 			/*transform: translate(0 -50%);*/
 			/*right: 50%;*/
-			top: -6px;
-			right: -4px;
+			top: 0px;
+			right: 0px;
 			box-shadow: 0px 0px 4px #00ee00aa, 0px 0px 2px #00ee00cc,
 				0px 0px 7px #00ee0088;
 		}

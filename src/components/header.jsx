@@ -20,10 +20,10 @@ const HeaderContainer = styled.header`
 		width: 100%;
 		height: 100%;
 		text-align: center;
-		text-shadow: -1px -1px 0px rgba(255, 255, 255, 0.7),
-			1px -1px 0px rgba(255, 255, 255, 0.7),
-			-1px 1px 0px rgba(255, 255, 255, 0.7),
-			1px 1px 0px rgba(255, 255, 255, 0.7), -1px 2px 1px #a0a0a0,
+		text-shadow: -1px -1px 0px ${props => props.theme.bgLight}AA,
+			1px -1px 0px ${props => props.theme.bgLight}AA,
+			-1px 1px 0px ${props => props.theme.bgLight}AA,
+			1px 1px 0px ${props => props.theme.bgLight}AA, -1px 2px 1px #a0a0a0,
 			-2px 4px 2px #a0a0a0, -3px 6px 3px #a0a0a099, -4px 8px 4px #a0a0a077,
 			-5px 10px 5px #a0a0a066, -6px 12px 6px #a0a0a055,
 			-7px 13px 7px #a0a0a044, -8px 15px 8px #a0a0a044,

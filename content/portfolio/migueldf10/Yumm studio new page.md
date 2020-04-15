@@ -8,6 +8,6 @@ tags:
     - Visual identity
 ---
 
-![Logo][photo1]{.class}
+![Logo][photo1]
 
-[photo1]: index-desktop.png 'Facebook Cover'
+[photo1]: migueldf10-cover.png 'Cover'

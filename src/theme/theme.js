@@ -1,8 +1,8 @@
 // Define our `fg` and `bg` on the theme
 export const theme = {
-	fgLight: "#999",
-	fg: "#444444",
-	fgAccent: "#222",
+	fgLight: "#999999",
+	fg: "#333333",
+	fgAccent: "#111111",
 	bgLight: "#FFFFFF",
 	bg: "#F1F1F1",
 	bgAccent: "#DEDEDE",

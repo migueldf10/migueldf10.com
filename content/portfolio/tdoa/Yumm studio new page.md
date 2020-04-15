@@ -12,6 +12,11 @@ tags:
 
 ![Logo][photo1]
 ![Facebook cover for The Dutch Online Academy][photo2]
+![Facebook cover for The Dutch Online Academy][photo3]
+![Facebook cover for The Dutch Online Academy][photo4]
+
 
 [photo1]: tdoa-cover.png 'Facebook Cover'
 [photo2]: tdoa-fb-cover.png 'Facebook Cover'
+[photo3]: tdoa-orange-full.png 'Facebook Cover'
+[photo4]: tdoa-white-orange.png 'Facebook Cover'
