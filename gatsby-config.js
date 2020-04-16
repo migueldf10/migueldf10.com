@@ -55,6 +55,8 @@ module.exports = {
 							maxWidth: 2600,
 							linkImagesToOriginal: true,
 							quality: 90,
+							backgroundColor: `none`,
+
 						},
 					},
 				],
@@ -70,6 +72,7 @@ module.exports = {
 							maxWidth: 2600,
 							linkImagesToOriginal: true,
 							quality: 90,
+							backgroundColor: `none`,
 						},
 					},
 				],

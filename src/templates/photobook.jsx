@@ -70,7 +70,7 @@ const Article = styled.article`
 		width: auto;
 		height: auto;
 	}
-	font-size: 0.7rem;
+	font-size: 1rem;
 
 	${MEDIA.PHONE`
 		padding:16px;
