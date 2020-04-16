@@ -5,6 +5,7 @@ import SEO from '../components/seo'
 import MEDIA from '../utils/mediaTemplates'
 import styled from 'styled-components'
 import ArticleNavigation from '../components/articleNavigation'
+import { MDXRenderer } from 'gatsby-plugin-mdx'
 
 const PhotoBookHeader = styled.div`
 	display: flex;
@@ -78,7 +79,7 @@ const Article = styled.article`
 
 class PhotobookTemplate extends React.Component {
 	render() {
-		const { excerpt, html } = this.props.data.post
+		const { excerpt, body } = this.props.data.post
 		const { title, tags, description } = this.props.data.post.frontmatter
 		const siteTitle = this.props.data.site.siteMetadata.title
 		const { previous, next } = this.props.pageContext
@@ -104,7 +105,7 @@ class PhotobookTemplate extends React.Component {
 						</Title>
 						<Meta>{description || excerpt}</Meta>
 					</PhotoBookHeader>
-					<div dangerouslySetInnerHTML={{ __html: html }} />
+					<MDXRenderer>{body}</MDXRenderer>
 					<ArticleNavigation previous={previous} next={next} />
 				</Article>
 			</Layout>
@@ -122,10 +123,10 @@ export const photoboookQuery = graphql`
 				author
 			}
 		}
-		post: markdownRemark(fields: { slug: { eq: $slug } }) {
+		post: mdx(fields: { slug: { eq: $slug } }) {
 			id
 			excerpt(pruneLength: 160)
-			html
+			body
 			frontmatter {
 				title
 				date(formatString: "MMMM DD, YYYY")

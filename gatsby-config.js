@@ -1,3 +1,5 @@
+const path = require('path')
+
 module.exports = {
 	siteMetadata: {
 		title: `Migueldf10.com`,
@@ -47,6 +49,21 @@ module.exports = {
 			resolve: `gatsby-transformer-remark`,
 			options: {
 				plugins: [
+					{
+						resolve: `gatsby-remark-images`,
+						options: {
+							maxWidth: 2600,
+							linkImagesToOriginal: true,
+							quality: 90,
+						},
+					},
+				],
+			},
+		},
+		{
+			resolve: `gatsby-plugin-mdx`,
+			options: {
+				gatsbyRemarkPlugins: [
 					{
 						resolve: `gatsby-remark-images`,
 						options: {

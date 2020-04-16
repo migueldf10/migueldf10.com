@@ -183,7 +183,7 @@ export const pageQuery = graphql`
 				}
 			}
 		}
-		portfolio: allMarkdownRemark(
+		portfolio: allMdx(
 			filter: { frontmatter: { type: { eq: "photobook" } } }
 			sort: { fields: [frontmatter___date], order: DESC }
 		) {
