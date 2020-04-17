@@ -115,9 +115,9 @@ const Bio = () => {
 						<h2>About me</h2>
 					</SectionTitle>
 					<p>
-						My name is Miguel Domenech and I'm a freelancer web
-						designer & developer with passion for solving complex
-						problems through simple design.
+						My name is Miguel Domenech and I'm a freelance marketer,
+						web designer & developer with passion for solving
+						complex problems through simple design.
 					</p>
 					<p>
 						Currently I work & live in Amsterdam and I'm looking for

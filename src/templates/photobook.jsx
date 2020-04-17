@@ -4,7 +4,6 @@ import Layout from '../components/layout'
 import SEO from '../components/seo'
 import MEDIA from '../utils/mediaTemplates'
 import styled from 'styled-components'
-import ArticleNavigation from '../components/articleNavigation'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 
 const PhotoBookHeader = styled.div`
@@ -56,10 +55,15 @@ const TagContainer = styled.div`
 
 		font-size: 0.7rem;
 		margin-right: 1rem;
-		display: inline;
+		display: inline-block;
 		word-break: break-word;
 		padding-bottom: 0.5rem;
 	}
+	${MEDIA.PHONE`
+		small{
+			margin-right: 0.3rem;
+		}
+	`}
 `
 
 const Article = styled.article`
@@ -80,7 +84,13 @@ const Article = styled.article`
 class PhotobookTemplate extends React.Component {
 	render() {
 		const { excerpt, body } = this.props.data.post
-		const { title, tags, description } = this.props.data.post.frontmatter
+		const {
+			title,
+			tags,
+			description,
+			tech,
+			date,
+		} = this.props.data.post.frontmatter
 		const siteTitle = this.props.data.site.siteMetadata.title
 		const { previous, next } = this.props.pageContext
 
@@ -95,18 +105,25 @@ class PhotobookTemplate extends React.Component {
 					<PhotoBookHeader>
 						<Title>
 							<h1>{title}</h1>
-							{tags ? (
-								<TagContainer>
-									{tags.map((tag, index) => (
-										<small key={index}>{tag}</small>
-									))}
-								</TagContainer>
-							) : null}
+							<TagContainer>
+								{date && <small>Published on: {date}</small>}
+								<small>•</small>
+								{tech
+									? tech.map((techu, index) => (
+											<small key={index}>{techu}</small>
+									  ))
+									: null}
+								<small>•</small>
+								{tags
+									? tags.map((tag, index) => (
+											<small key={index}>{tag}</small>
+									  ))
+									: null}
+							</TagContainer>
 						</Title>
 						<Meta>{description || excerpt}</Meta>
 					</PhotoBookHeader>
 					<MDXRenderer>{body}</MDXRenderer>
-					<ArticleNavigation previous={previous} next={next} />
 				</Article>
 			</Layout>
 		)
@@ -129,9 +146,10 @@ export const photoboookQuery = graphql`
 			body
 			frontmatter {
 				title
-				date(formatString: "MMMM DD, YYYY")
+				date(formatString: "DD/MM/YY")
 				description
 				tags
+				tech
 				img {
 					childImageSharp {
 						fluid(maxWidth: 1200) {

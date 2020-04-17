@@ -15,6 +15,7 @@ const RowContainer = styled.div`
 	p {
 		display: flex;
 		flex-direction: row;
+		margin: 0px;
 		.gatsby-resp-image-wrapper {
 			width: 100%;
 			margin: 10px !important;
@@ -23,6 +24,10 @@ const RowContainer = styled.div`
 		${MEDIA.TABLET`
 			flex-direction: column;
 			
+			.gatsby-resp-image-wrapper {
+				width: 100%;
+				margin: 10px 0px !important;
+			}
 		`}
 	}
 `
@@ -65,5 +70,22 @@ export class Column extends Component {
 	render() {
 		const { children } = this.props
 		return <ColumnContainer>{children}</ColumnContainer>
+	}
+}
+
+export class TextBlock extends Component {
+	render() {
+		const TextBlockContainer = styled.div`
+			font-size: 1.4rem;
+			padding: 2rem 30% 2rem 0;
+			font-variation-settings: 'wdth' 100, 'wght' 400;
+			letter-spacing: -1px;
+			${MEDIA.TABLET`
+				padding: 2rem 0;
+				font-size: 1.1rem;
+			`}
+		`
+		const { children } = this.props
+		return <TextBlockContainer>{children}</TextBlockContainer>
 	}
 }

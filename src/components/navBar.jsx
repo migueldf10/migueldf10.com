@@ -11,6 +11,8 @@ const NavBarContainer = styled.header`
 	justify-content: space-between;
 	padding: 10px 32px;
 	background: ${props => props.theme.bg};
+	position: sticky;
+	top: 0px;
 	a {
 		text-decoration: none;
 		font-variation-settings: 'wdth' 100, 'wght' 600;
