@@ -48,19 +48,24 @@ const TagContainer = styled.div`
 	overflow: auto;
 	display: flex;
 	flex-wrap: wrap;
+	margin-bottom: 4px;
 
 	small {
 		margin: 0px;
 		text-transform: uppercase;
-
 		font-size: 0.7rem;
-		margin-right: 1rem;
+		line-height: 0.7rem;
+		padding: 1px;
+		margin-right: 4px;
 		display: inline-block;
 		word-break: break-word;
-		padding-bottom: 0.5rem;
+		&.tag {
+			background: ${props => props.theme.bgLight};
+		}
 	}
 	${MEDIA.PHONE`
 		small{
+			font-size: 0.6rem;
 			margin-right: 0.3rem;
 		}
 	`}
@@ -105,21 +110,37 @@ class PhotobookTemplate extends React.Component {
 					<PhotoBookHeader>
 						<Title>
 							<h1>{title}</h1>
-							<TagContainer>
-								{date && <small>Published on: {date}</small>}
-								<small>•</small>
-								{tech
-									? tech.map((techu, index) => (
-											<small key={index}>{techu}</small>
-									  ))
-									: null}
-								<small>•</small>
-								{tags
-									? tags.map((tag, index) => (
-											<small key={index}>{tag}</small>
-									  ))
-									: null}
-							</TagContainer>
+							{date && (
+								<>
+									<TagContainer>
+										<small>Published on: </small>
+										<small className="tag">{date}</small>
+									</TagContainer>
+								</>
+							)}
+
+							{tech ? (
+								<>
+									<TagContainer>
+										<small>Tech stack:</small>
+										{tech.map((techu, index) => (
+											<small key={index} className="tag">
+												{techu}
+											</small>
+										))}
+									</TagContainer>
+								</>
+							) : null}
+							{tags ? (
+								<TagContainer>
+									<small>Topics:</small>
+									{tags.map((tag, index) => (
+										<small key={index} className="tag">
+											{tag}
+										</small>
+									))}
+								</TagContainer>
+							) : null}
 						</Title>
 						<Meta>{description || excerpt}</Meta>
 					</PhotoBookHeader>

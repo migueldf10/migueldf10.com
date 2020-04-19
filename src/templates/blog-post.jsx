@@ -82,16 +82,19 @@ class BlogPostTemplate extends React.Component {
 							</blockquote>
 							<div className="meta">
 								<span>Article by Miguel Domenech </span>
-								<span>{post.frontmatter.date}</span>
+								<span>Published: {post.frontmatter.date}</span>
 							</div>
 						</div>
-						<div className="column column-two">
-							<Img
-								fluid={
-									post.frontmatter.img.childImageSharp.fluid
-								}
-							/>
-						</div>
+						{post.frontmatter.img && (
+							<div className="column column-two">
+								<Img
+									fluid={
+										post.frontmatter.img.childImageSharp
+											.fluid
+									}
+								/>
+							</div>
+						)}
 					</Header>
 					<ArticleBody
 						dangerouslySetInnerHTML={{ __html: post.html }}

@@ -1,16 +1,21 @@
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
+var slugify = require('slugify')
 
 exports.createPages = async ({ graphql, actions }) => {
 	const { createPage } = actions
 
 	const blogPost = path.resolve(`./src/templates/blog-post.jsx`)
 	const photobook = path.resolve(`./src/templates/photobook.jsx`)
+
 	const result = await graphql(
 		`
       {
         posts: allMarkdownRemark(
-			filter: { frontmatter: { type: { ne: "photobook" } } }
+			filter: { frontmatter: { 
+				type: { ne: "photobook" }
+				published: { ne: false }
+		 } }
           	sort: { fields: [frontmatter___date], order: DESC }
           	limit: 1000
         ) {
@@ -22,12 +27,16 @@ exports.createPages = async ({ graphql, actions }) => {
 					frontmatter {
 						title
 						type
+						
 					}
 				}
 			}
 			}
 			portfolios: allMdx(
-				filter: { frontmatter: { type: { eq: "photobook" } } }
+				filter: { frontmatter: { 
+					type: { eq: "photobook" }
+					published: { ne: false }
+				} }
 				sort: { fields: [frontmatter___date], order: DESC }
 				limit: 1000
 			) {
@@ -88,7 +97,11 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 	const { createNodeField } = actions
 
 	if (node.internal.type === `MarkdownRemark`) {
-		const value = createFilePath({ node, getNode })
+		let value = createFilePath({ node, getNode, trailingSlash: false })
+		if (node.frontmatter && node.frontmatter.slug) {
+			value = "/" + node.frontmatter.slug
+		}
+		value = slugify("/articles" + value, { remove: /[*+~.()'"!:?@]/g, lower: true })
 		createNodeField({
 			name: `slug`,
 			node,
@@ -96,7 +109,14 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 		})
 	}
 	if (node.internal.type === `Mdx`) {
-		const value = createFilePath({ node, getNode })
+		let value = createFilePath({ node, getNode, trailingSlash: false })
+
+		if (node.frontmatter && node.frontmatter.slug) {
+			value = "/" + node.frontmatter.slug
+		}
+
+		value = slugify("/projects" + value, { remove: /[*+~.()'"!:@]/g, lower: true })
+
 		createNodeField({
 			name: `slug`,
 			node,

@@ -94,7 +94,7 @@ class BlogIndex extends React.Component {
 				title={siteTitle}
 				type="fullwidth"
 			>
-				<SEO title="All posts" />
+				<SEO title="migueldf10's freelance website" />
 				<Header title="Hello, it's Miguel Domenech">
 					<p>
 						A freelance web designer, developer and marketer living
@@ -165,7 +165,12 @@ export const pageQuery = graphql`
 			}
 		}
 		articles: allMarkdownRemark(
-			filter: { frontmatter: { type: { ne: "photobook" } } }
+			filter: {
+				frontmatter: {
+					type: { ne: "photobook" }
+					published: { ne: false }
+				}
+			}
 			sort: { fields: [frontmatter___date], order: DESC }
 		) {
 			edges {
@@ -184,7 +189,12 @@ export const pageQuery = graphql`
 			}
 		}
 		portfolio: allMdx(
-			filter: { frontmatter: { type: { eq: "photobook" } } }
+			filter: {
+				frontmatter: {
+					type: { eq: "photobook" }
+					published: { ne: false }
+				}
+			}
 			sort: { fields: [frontmatter___date], order: DESC }
 		) {
 			edges {

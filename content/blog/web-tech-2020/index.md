@@ -4,6 +4,7 @@ date: '2019-11-02T22:40:32.169Z'
 description: From wordpress to pure React, upsides and downsides.
 img: './DSC_0503.jpg'
 type: normal
+published: false
 tags:
     - portfolio
     - design

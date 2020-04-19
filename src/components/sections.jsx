@@ -15,6 +15,7 @@ const RowContainer = styled.div`
 	p {
 		display: flex;
 		flex-direction: row;
+		align-items: baseline;
 		margin: 0px;
 		.gatsby-resp-image-wrapper {
 			width: 100%;
