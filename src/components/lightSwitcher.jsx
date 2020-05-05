@@ -13,11 +13,13 @@ const SwitcherContainer = styled.button`
 	/*text-decoration: underline;*/
 	transform: translateX(50%) rotateZ(-90deg) translateX(50%);
 	font-size: 1rem;
-	font-variation-settings: 'wdth' 100, 'wght' 200;
+	font-family: 'League Spartan';
+	font-variation-settings: 'wght' 200;
 	transition: 0.3s;
 	:hover {
 		color: ${props => props.theme.fg};
-		font-variation-settings: 'wdth' 120, 'wght' 600;
+		font-variation-settings: 'wght' 800;
+		letter-spacing: 1px;
 	}
 	:focus {
 		outline: none;

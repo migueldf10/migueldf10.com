@@ -1,58 +1,41 @@
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
 var slugify = require('slugify')
+const { isFuture, parseISO } = require('date-fns')
 
-exports.createPages = async ({ graphql, actions }) => {
+exports.createPages = async ({ graphql, actions, reporter }) => {
 	const { createPage } = actions
-
-	const blogPost = path.resolve(`./src/templates/blog-post.jsx`)
-	const photobook = path.resolve(`./src/templates/photobook.jsx`)
-
 	const result = await graphql(
 		`
-      {
-        posts: allMarkdownRemark(
-			filter: { frontmatter: { 
-				type: { ne: "photobook" }
-				published: { ne: false }
-		 } }
-          	sort: { fields: [frontmatter___date], order: DESC }
-          	limit: 1000
-        ) {
-			edges {
-				node {
-					fields {
-						slug
-					}
-					frontmatter {
-						title
-						type
-						
-					}
-				}
-			}
-			}
-			portfolios: allMdx(
-				filter: { frontmatter: { 
-					type: { eq: "photobook" }
-					published: { ne: false }
-				} }
-				sort: { fields: [frontmatter___date], order: DESC }
-				limit: 1000
+		{
+			articles: allSanityArticle(
+				filter: {slug: {current: {ne: null}}, publishedAt: {ne: null}}
 			) {
-			edges {
-				node {
-					fields {
-						slug
-					}
-					frontmatter {
-						title
-						type
+				edges {
+					node {
+						id
+						publishedAt
+						slug {
+							current
+						}
 					}
 				}
 			}
+			
+			projects: allSanityProject(
+				filter: {slug: {current: {ne: null}}, publishedAt: {ne: null}}
+			) {
+				edges {
+					node {
+						id
+						publishedAt
+						slug {
+							current
+						}
+					}
+				}
 			}
-      }
+		}
     `
 	)
 
@@ -61,66 +44,74 @@ exports.createPages = async ({ graphql, actions }) => {
 	}
 
 	// Create blog posts pages.
-	const posts = result.data.posts.edges
-	const portfolios = result.data.portfolios.edges
 
-	posts.forEach((post, index) => {
-		const previous = index === posts.length - 1 ? null : posts[index + 1].node
-		const next = index === 0 ? null : posts[index - 1].node
+	const articleEdges = (result.data.articles || {}).edges || []
+	const projectEdges = (result.data.projects || {}).edges || []
 
-		createPage({
-			path: post.node.fields.slug,
-			component: blogPost,
-			context: {
-				slug: post.node.fields.slug,
-				previous,
-				next,
-			},
+	projectEdges
+		.filter(edge => !isFuture(parseISO(edge.node.publishedAt)))
+		.forEach(edge => {
+			const id = edge.node.id
+			const slug = edge.node.slug.current
+			const path = `/project/${slug}`
+
+			reporter.info(`Creating project page: ${path}`)
+
+			createPage({
+				path,
+				component: require.resolve('./src/templates/project.jsx'),
+				context: { id }
+			})
 		})
-	})
-	portfolios.forEach((portfolio, index) => {
-		const previous = index === portfolios.length - 1 ? null : portfolios[index + 1].node
-		const next = index === 0 ? null : portfolios[index - 1].node
-		createPage({
-			path: portfolio.node.fields.slug,
-			component: photobook,
-			context: {
-				slug: portfolio.node.fields.slug,
-				previous,
-				next,
-			},
+	articleEdges
+		.filter(edge => !isFuture(parseISO(edge.node.publishedAt)))
+		.forEach(edge => {
+			const id = edge.node.id
+			const slug = edge.node.slug.current
+			const path = `/article/${slug}`
+
+			reporter.info(`Creating project page: ${path}`)
+
+			createPage({
+				path,
+				component: require.resolve('./src/templates/article.jsx'),
+				context: { id }
+			})
 		})
-	})
+
+
 }
 
-exports.onCreateNode = ({ node, actions, getNode }) => {
-	const { createNodeField } = actions
+//exports.onCreateNode = ({ node, actions, getNode }) => {
+//	const { createNodeField } = actions
 
-	if (node.internal.type === `MarkdownRemark`) {
-		let value = createFilePath({ node, getNode, trailingSlash: false })
-		if (node.frontmatter && node.frontmatter.slug) {
-			value = "/" + node.frontmatter.slug
-		}
-		value = slugify("/articles" + value, { remove: /[*+~.()'"!:?@]/g, lower: true })
-		createNodeField({
-			name: `slug`,
-			node,
-			value,
-		})
-	}
-	if (node.internal.type === `Mdx`) {
-		let value = createFilePath({ node, getNode, trailingSlash: false })
+//	if (node.internal.type === `MarkdownRemark`) {
+//		let value = createFilePath({ node, getNode, trailingSlash: false })
+//		if (node.frontmatter && node.frontmatter.slug) {
+//			value = "/" + node.frontmatter.slug
+//		}
+//		value = slugify("/articles" + value, { remove: /[*+~.()'"!:?@]/g, lower: true })
+//		createNodeField({
+//			name: `slug`,
+//			node,
+//			value,
+//		})
+//	}
+//	if (node.internal.type === `Mdx`) {
+//		let value = createFilePath({ node, getNode, trailingSlash: false })
 
-		if (node.frontmatter && node.frontmatter.slug) {
-			value = "/" + node.frontmatter.slug
-		}
+//		if (node.frontmatter && node.frontmatter.slug) {
+//			value = "/" + node.frontmatter.slug
+//		}
 
-		value = slugify("/projects" + value, { remove: /[*+~.()'"!:@]/g, lower: true })
+//		value = slugify("/projects" + value, { remove: /[*+~.()'"!:@]/g, lower: true })
 
-		createNodeField({
-			name: `slug`,
-			node,
-			value,
-		})
-	}
-}
+//		createNodeField({
+//			name: `slug`,
+//			node,
+//			value,
+//		})
+//	}
+//}
+
+

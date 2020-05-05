@@ -3,12 +3,16 @@ import 'normalize.css'
 
 const Styles = createGlobalStyle`
 	* {
-		font-family: 'Inconsolata', 'Arial', sans-serif;
+		font-family: 'Amstelvar', 'Arial', sans-serif;
 		color: inherit;
 		text-decoration: inherit;
 		color: ${props => props.theme.fg};
 		cursor: none!important;
 		box-sizing: border-box;
+
+	}
+	p {
+		font-family: 'League Spartan', 'Arial', sans-serif;
 
 	}
 	:root {

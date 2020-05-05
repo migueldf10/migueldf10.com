@@ -14,25 +14,34 @@ const NavBarContainer = styled.header`
 	position: sticky;
 	top: 0px;
 	a {
-		text-decoration: none;
-		font-variation-settings: 'wdth' 100, 'wght' 600;
-		letter-spacing: 1px;
 		transition: 0.5s;
 		:hover {
-			font-variation-settings: 'wdth' 140, 'wght' 900;
-			letter-spacing: -1px;
+			letter-spacing: 1px;
+			font-variation-settings: 'wght' 900;
 		}
+	}
+	a,
+	.superCta span {
+		text-decoration: none;
 	}
 	.contactMobile {
 		display: none;
 	}
 	.headerTitles {
 		font-size: 1rem;
-		text-transform: uppercase;
+	}
+	a,
+	span,
+	h1,
+	h2,
+	h3 {
+		font-family: 'League Spartan';
+		font-variation-settings: 'wght' 240;
 	}
 	${MEDIA.PHONE`
 		a,span,h1,h2,h3{
 			font-size: 17px;
+
 		}
 		
 		.contactDesktop{
@@ -53,6 +62,13 @@ const ContactPill = styled.div`
 		margin-right: -24px;
 		padding-top: 8px;
 		margin-top: -8px;
+		:hover {
+			span {
+				transition: 0.5s;
+				letter-spacing: 1px;
+				font-variation-settings: 'wght' 900;
+			}
+		}
 		span {
 			position: relative;
 			display: inline-block;
@@ -60,8 +76,8 @@ const ContactPill = styled.div`
 		}
 		::after {
 			content: '';
-			height: 8px;
-			width: 8px;
+			height: 12px;
+			width: 12px;
 			position: absolute;
 			z-index: 1;
 			border-radius: 40px;
@@ -71,14 +87,14 @@ const ContactPill = styled.div`
 			top: 0px;
 			right: 0px;
 			box-shadow: 0px 0px 4px #00ee00aa, 0px 0px 2px #00ee00cc,
-				0px 0px 7px #00ee0088;
+				0px 0px 6px #00ee0055, 0px 0px 10px #00ee0088;
 		}
 	}
 `
 
 class NavBar extends React.Component {
 	render() {
-		const { location, title } = this.props
+		const { location, title = 'migueldf10' } = this.props
 		const rootPath = `${__PATH_PREFIX__}/`
 		let header
 

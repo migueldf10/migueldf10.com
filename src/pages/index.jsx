@@ -7,7 +7,12 @@ import Img from 'gatsby-image'
 import styled from 'styled-components'
 import MEDIA from '../utils/mediaTemplates'
 import ArticleGridItem from '../components/articleGridItem'
-import PortfolioGridItem from '../components/portfolioGridItem'
+import {
+	mapEdgesToNodes,
+	filterOutDocsWithoutSlugs,
+	filterOutDocsPublishedInTheFuture,
+} from '../lib/helpers'
+import ProjectPreviewGrid from '../components/project-preview-grid'
 
 const ImageWrapper = styled.div`
 	.gatsby-image-wrapper {
@@ -60,33 +65,39 @@ const BlogWrapper = styled.div`
 	`}
 `
 
-const PortfolioGrid = styled.div`
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	padding: 32px;
-	${MEDIA.PHONE`
-		padding:0;
-	`}
-`
-
 const SectionTitle = styled.div`
 	padding: 0 32px;
 	h2 {
 		text-align: center;
 		margin: 0px;
-		font-variation-settings: 'wdth' 200, 'wght' 700;
-		letter-spacing: -4px;
+		font-size: 2rem;
+		font-variation-settings: 'wdth' 200, 'wght' 300, 'XOPQ' 200, 'YOPQ' 24,
+			'YTAS' 900, 'YTUC' 900, 'YTLC' 420;
 		color: ${props => props.theme.fgLight};
 	}
+	${MEDIA.PHONE`
+		h2{
+			font-size: 1.6rem;
+
+		}
+	`}
 `
 
 class BlogIndex extends React.Component {
 	render() {
 		const { data } = this.props
 		const siteTitle = data.site.siteMetadata.title
-		const posts = data.articles.edges
-		const portfolios = data.portfolio.edges
+
+		const projectNodes = (data || {}).projects
+			? mapEdgesToNodes(data.projects)
+					.filter(filterOutDocsWithoutSlugs)
+					.filter(filterOutDocsPublishedInTheFuture)
+			: []
+		const articleNodes = (data || {}).articles
+			? mapEdgesToNodes(data.articles)
+					.filter(filterOutDocsWithoutSlugs)
+					.filter(filterOutDocsPublishedInTheFuture)
+			: []
 
 		return (
 			<Layout
@@ -103,18 +114,12 @@ class BlogIndex extends React.Component {
 				</Header>
 				<Container>
 					<SectionTitle>
-						<h2>Projects</h2>
+						<h2>Latest Projects</h2>
 					</SectionTitle>
-					<PortfolioGrid>
-						{portfolios.map(({ node }) => {
-							return (
-								<PortfolioGridItem
-									key={node.fields.slug}
-									node={node}
-								/>
-							)
-						})}
-					</PortfolioGrid>
+					<ProjectPreviewGrid
+						nodes={projectNodes}
+						browseMoreHref="/archive/"
+					/>
 				</Container>
 				<Container>
 					<SectionTitle>
@@ -128,14 +133,10 @@ class BlogIndex extends React.Component {
 						</ImageWrapper>
 
 						<div className="blogPosts">
-							{posts.map(({ node }) => {
-								return (
-									<ArticleGridItem
-										key={node.fields.slug}
-										node={node}
-									/>
-								)
-							})}
+							{articleNodes &&
+								articleNodes.map((node, index) => (
+									<ArticleGridItem key={index} {...node} />
+								))}
 						</div>
 					</BlogWrapper>
 				</Container>
@@ -164,54 +165,95 @@ export const pageQuery = graphql`
 				title
 			}
 		}
-		articles: allMarkdownRemark(
+
+		projects: allSanityProject(
+			limit: 6
+			sort: { fields: [publishedAt], order: DESC }
 			filter: {
-				frontmatter: {
-					type: { ne: "photobook" }
-					published: { ne: false }
-				}
+				slug: { current: { ne: null } }
+				publishedAt: { ne: null }
 			}
-			sort: { fields: [frontmatter___date], order: DESC }
 		) {
 			edges {
 				node {
-					excerpt
-					fields {
-						slug
-					}
-					frontmatter {
-						date(formatString: "MMMM DD, YYYY")
+					id
+					categories {
+						_id
 						title
-						description
-						tags
+					}
+					mainImage {
+						crop {
+							_key
+							_type
+							top
+							bottom
+							left
+							right
+						}
+						hotspot {
+							_key
+							_type
+							x
+							y
+							height
+							width
+						}
+						asset {
+							_id
+						}
+						alt
+					}
+					title
+					_rawExcerpt
+					slug {
+						current
 					}
 				}
 			}
 		}
-		portfolio: allMdx(
+		articles: allSanityArticle(
+			limit: 6
+			sort: { fields: [publishedAt], order: DESC }
 			filter: {
-				frontmatter: {
-					type: { eq: "photobook" }
-					published: { ne: false }
-				}
+				slug: { current: { ne: null } }
+				publishedAt: { ne: null }
 			}
-			sort: { fields: [frontmatter___date], order: DESC }
 		) {
 			edges {
 				node {
-					fields {
-						slug
-					}
-					frontmatter {
+					id
+					_rawExcerpt
+					categories {
+						_id
 						title
-						tags
-						img {
-							childImageSharp {
-								fluid(maxWidth: 1200) {
-									...GatsbyImageSharpFluid
-								}
-							}
+					}
+					mainImage {
+						crop {
+							_key
+							_type
+							top
+							bottom
+							left
+							right
 						}
+						hotspot {
+							_key
+							_type
+							x
+							y
+							height
+							width
+						}
+						asset {
+							_id
+						}
+						alt
+					}
+					title
+					_rawExcerpt
+					publishedAt
+					slug {
+						current
 					}
 				}
 			}

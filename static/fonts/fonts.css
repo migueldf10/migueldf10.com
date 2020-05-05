@@ -1,5 +1,5 @@
 /*@font-face {
-	font-family: 'Science Gothic';
+	font-family: 'Amstelvar';
 	src: url('ScienceGothic.ttf') format('truetype');
 	font-display: swap;
 	font-weight: 125 950;
@@ -12,12 +12,18 @@
 	src: url('Decovar-VF.ttf') format('truetype');
 }
 @font-face {
-	font-family: 'League Spartan Variable';
+	font-family: 'Amstelvar Variable';
 	src: url('LeagueSpartanVariable.ttf') format('truetype');
 }*/
 @font-face {
-	font-family: 'Inconsolata';
-	src: url('Inconsolata-VF.ttf') format('truetype');
+	font-family: 'Amstelvar';
+	src: url('Amstelvar-Roman.ttf') format('truetype');
+	font-weight: 175 900;
+	font-stretch: 50% 200%;
+}
+@font-face {
+	font-family: 'League Spartan';
+	src: url('LeagueSpartanVariable.ttf') format('truetype');
 	font-weight: 175 900;
 	font-stretch: 50% 200%;
 }

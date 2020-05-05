@@ -1,5 +1,13 @@
 const path = require('path')
+// Load variables from `.env` as soon as possible
+require('dotenv').config({
+	path: `.env.${process.env.NODE_ENV || 'development'}`
+})
 
+const clientConfig = require('./client-config')
+const token = process.env.SANITY_READ_TOKEN
+
+const isProd = process.env.NODE_ENV === 'production'
 module.exports = {
 	siteMetadata: {
 		title: `Migueldf10.com`,
@@ -40,7 +48,7 @@ module.exports = {
 			resolve: "gatsby-plugin-web-font-loader",
 			options: {
 				custom: {
-					families: ["Inconsolata"],
+					families: ["Amstelvar"],
 					urls: ["/fonts/fonts.css"],
 				},
 			},
@@ -97,6 +105,15 @@ module.exports = {
 		},
 		`gatsby-plugin-react-helmet`,
 		`gatsby-plugin-styled-components`,
+		{
+			resolve: 'gatsby-source-sanity',
+			options: {
+				...clientConfig.sanity,
+				token,
+				watchMode: !isProd,
+				overlayDrafts: !isProd && token
+			}
+		},
 		// {
 		//   resolve: `gatsby-plugin-google-tagmanager`,
 		//   options: {
