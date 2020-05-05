@@ -65,7 +65,7 @@ const SectionTitle = styled.div`
 	h2 {
 		text-align: left;
 		margin: 0px;
-		font-variation-settings: 'wdth' 120, 'wght' 240, 'XOPQ' 300, 'YOPQ' 99;
+		font-variation-settings: 'wdth' 120, 'wght' 340, 'XOPQ' 300, 'YOPQ' 99;
 		color: ${props => props.theme.fgLight};
 	}
 	padding-top: 42px;

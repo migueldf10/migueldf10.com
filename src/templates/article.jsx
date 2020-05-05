@@ -13,9 +13,13 @@ import { format, formatDistance, differenceInDays } from 'date-fns'
 
 const ArticleContainer = styled.article`
 	background: ${props => props.theme.bg};
-	padding: 0.5rem 1rem;
+	padding: 2rem 1rem;
 `
-
+const ArticleBody = styled.div`
+	font-size: 1.3rem;
+	max-width: 30em;
+	margin: auto;
+`
 const Header = styled.header`
 	margin-bottom: 3rem;
 	display: flex;
@@ -26,7 +30,6 @@ const Header = styled.header`
 	background: ${props => props.theme.bgLight};
 	h1 {
 		font-variation-settings: 'wdth' 160, 'wght' 700;
-		letter-spacing: -4px;
 		font-size: 1.9rem;
 	}
 	.column {
@@ -252,9 +255,9 @@ const BlogPostTemplate = props => {
 						)}
 					</Header>
 					{_rawBody && (
-						<ArticleContainer>
+						<ArticleBody>
 							<BlockContent blocks={_rawBody || []} />
-						</ArticleContainer>
+						</ArticleBody>
 					)}
 
 					{relatedProjects && relatedProjects.length > 0 && (

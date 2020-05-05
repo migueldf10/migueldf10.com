@@ -71,7 +71,7 @@ const SectionTitle = styled.div`
 		text-align: center;
 		margin: 0px;
 		font-size: 2rem;
-		font-variation-settings: 'wdth' 200, 'wght' 300, 'XOPQ' 200, 'YOPQ' 74,
+		font-variation-settings: 'wdth' 200, 'wght' 300, 'XOPQ' 200, 'YOPQ' 94,
 			'YTAS' 900, 'YTUC' 900, 'YTLC' 420;
 		color: ${props => props.theme.fgLight};
 	}

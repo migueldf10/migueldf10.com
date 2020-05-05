@@ -45,7 +45,6 @@ const Title = styled.div`
 		width:100%;
 		padding: 0 0 32px;
 		h1{
-		line-break: anywhere;
 			width: 100%;
 		}
 	`}
@@ -93,6 +92,28 @@ const Article = styled.article`
 	${MEDIA.PHONE`
 		padding:16px;
 	`}
+`
+
+const ArticleBody = styled.div`
+	max-width: 26em;
+	margin: auto;
+	font-size: 1.4rem;
+	figure {
+		width: 100vw;
+		position: relative;
+		left: 50%;
+		right: 50%;
+		margin-left: -50vw;
+		margin-right: -50vw;
+	}
+	figcaption {
+		font-size: 0.7rem;
+		color: ${props => props.theme.fgLight};
+		margin: 0.5em 0 0 0.5em;
+	}
+	li {
+		margin-bottom: 1em;
+	}
 `
 
 export const query = graphql`
@@ -258,7 +279,11 @@ const ProjectTemplate = props => {
 						)}
 					</PhotoBookHeader>
 
-					{_rawBody && <BlockContent blocks={_rawBody || []} />}
+					{_rawBody && (
+						<ArticleBody>
+							<BlockContent blocks={_rawBody || []} />
+						</ArticleBody>
+					)}
 
 					{relatedProjects && relatedProjects.length > 0 && (
 						<div>
