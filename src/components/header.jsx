@@ -11,8 +11,8 @@ const HeaderContainer = styled.header`
 		padding: 0;
 		font-family: 'Amstelvar';
 		position: relative;
-		font-variation-settings: 'wdth' 120, 'wght' 440, 'XOPQ' 200, 'YOPQ' 69,
-			'YTAS' 900, 'YTUC' 900, 'YTLC' 420;
+		font-variation-settings: 'wdth' 120, 'wght' 440, 'XOPQ' 220, 'YOPQ' 125,
+			'YTAS' 1000, 'YTUC' 700, 'YTLC' 500;
 		color: ${props => props.theme.bgLight};
 		display: flex;
 		align-items: center;
@@ -51,11 +51,12 @@ const HeaderContainer = styled.header`
 
 	p {
 		text-align: center;
-		font-size: 1.4rem;
+		font-size: 1.6rem;
 		line-height: 1;
 		margin: 0px;
 		padding: 80px 0 0 0;
-		font-variation-settings: 'wght' 700;
+		letter-spacing: 1px;
+		font-variation-settings: 'wght' 500;
 	}
 	h1 {
 		font-size: 1.9rem;
@@ -85,7 +86,7 @@ const HeaderContainer = styled.header`
 		}
 		p {
 			padding: 80px 0;
-			font-size: 2.8rem;
+			font-size: 3rem;
 
 		}
 		`}

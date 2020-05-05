@@ -22,7 +22,7 @@ const Header = styled.div`
 
 	h3 {
 		font-size: 20px;
-		font-variation-settings: 'wdth' 120, 'wght' 240, 'XOPQ' 100, 'YOPQ' 59;
+		font-variation-settings: 'wdth' 120, 'wght' 340, 'XOPQ' 100, 'YOPQ' 109;
 		margin: 1rem 0;
 		transition: 0.7s;
 	}
@@ -39,7 +39,7 @@ const Header = styled.div`
 	&:hover {
 		background: ${props => props.theme.bgAccent};
 		h3 {
-			font-variation-settings: 'wdth' 90, 'wght' 840, 'XOPQ' 200, 'YOPQ' 59;
+			font-variation-settings: 'wdth' 90, 'wght' 840, 'XOPQ' 200, 'YOPQ' 109;
 		}
 		small {
 			font-variation-settings: 'wdth' 100, 'wght' 700;
