@@ -19,7 +19,7 @@ module.exports = {
 			linkedin: `migueldf10`,
 		},
 		contact: {
-			email: `migueldf10@gmail.com`,
+			email: `hi@migueldf10.com`,
 		},
 	},
 	plugins: [

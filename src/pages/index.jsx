@@ -112,11 +112,7 @@ class BlogIndex extends React.Component {
 			: []
 
 		return (
-			<Layout
-				location={this.props.location}
-				title={siteTitle}
-				type="fullwidth"
-			>
+			<Layout location={this.props.location} type="fullwidth">
 				<SEO title="migueldf10's freelance website" />
 				<Header title="Hello, it's Miguel Domenech">
 					<p>

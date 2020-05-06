@@ -127,7 +127,7 @@ class NavBar extends React.Component {
 						</a>
 						<span className="contactDesktop title"> / </span>
 						<a
-							href={`mailto:migueldf10@gmail.com?subject=Hey!`}
+							href={`mailto:hi@migueldf10.com?subject=Hey!`}
 							className="superCta"
 						>
 							<span>Email me</span>
