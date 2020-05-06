@@ -14,6 +14,7 @@ import { css } from 'styled-components';
 // Edit or add breakpoints inside constants/breakpoints.js
 
 const BREAKPOINTS = {
+	BIGDESKTOP: 1500,
 	DESKTOP: 992,
 	TABLET: 768,
 	PHONE: 520,

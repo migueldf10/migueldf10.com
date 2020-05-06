@@ -10,6 +10,7 @@ import { buildImageObj } from '../lib/helpers'
 import { imageUrlFor } from '../lib/image-url'
 import BlockContent from '../components/block-content'
 import { format, formatDistance, differenceInDays } from 'date-fns'
+import SEO from '../components/seo'
 
 const ArticleContainer = styled.article`
 	background: ${props => props.theme.bg};
@@ -40,6 +41,7 @@ const Header = styled.header`
 			padding: 0 1rem;
 		}
 		&.column-two {
+			margin-bottom: -4px;
 			padding-right: 0;
 		}
 		img {
@@ -69,7 +71,6 @@ const Header = styled.header`
 		}
 	`};
 `
-
 const TagContainer = styled.div`
 	overflow: auto;
 	display: flex;
@@ -172,6 +173,10 @@ export const query = graphql`
 				}
 				roles
 			}
+			seo {
+				meta_description
+				seo_title
+			}
 		}
 	}
 `
@@ -187,9 +192,19 @@ const BlogPostTemplate = props => {
 		mainImage,
 		publishedAt,
 		relatedProjects,
+		seo,
 	} = project
+
+	let seoTitle = title
+	let seoMeta = ''
+	if (seo) {
+		seoTitle = seo.seo_title
+		seoMeta = seo.meta_description
+	}
 	return (
 		<Layout location={props.location} type="fullwidth">
+			<SEO title={seoTitle} description={seoMeta} />
+
 			{errors && (
 				<Container>
 					<GraphQLErrorList errors={errors} />

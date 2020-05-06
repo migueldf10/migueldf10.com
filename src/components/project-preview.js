@@ -10,7 +10,7 @@ const PortfolioGridItemContainer = styled(Link)`
 	width: 50%;
 	padding: 1rem;
 	img{max-width:100%;}
-	${MEDIA.PHONE`
+	${MEDIA.TABLET`
 		padding: 0.5rem 0rem;
 		width:100%; 
 	`}
@@ -79,8 +79,8 @@ function ProjectPreview(props) {
 				{props.mainImage && props.mainImage.asset && (
 					<img
 						src={imageUrlFor(buildImageObj(props.mainImage))
-							.width(600)
-							.height(Math.floor((12 / 16) * 600))
+							.width(800)
+							.height(Math.floor((12 / 16) * 800))
 							.url()}
 						alt={props.mainImage.alt}
 					/>

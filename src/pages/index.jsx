@@ -22,7 +22,12 @@ const ImageWrapper = styled.div`
 	position: sticky;
 	top: 32px;
 	margin: 0 0 auto 0;
+	${MEDIA.TABLET`
+		display:none;
+
+  	`}
 	${MEDIA.PHONE`
+	display: block;
 		width: 100%;
 		padding:16px;
 		position: static;
@@ -38,6 +43,13 @@ const ImageWrapper = styled.div`
 const Container = styled.div`
 	padding: 100px 1rem;
 	background: ${props => props.theme.bg};
+	${MEDIA.TABLET`
+		margin: 100px 3rem;
+		`}
+	${MEDIA.PHONE`
+		margin: 0;
+		
+	`}
 `
 
 const BlogWrapper = styled.div`

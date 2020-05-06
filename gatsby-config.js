@@ -114,12 +114,12 @@ module.exports = {
 				overlayDrafts: !isProd && token
 			}
 		},
-		// {
-		//   resolve: `gatsby-plugin-google-tagmanager`,
-		//   options: {
-		//     id: `GTM-NNHS2J2`,
-		//     includeInDevelopment: true,
-		//   },
-		// },
+		{
+			resolve: `gatsby-plugin-google-tagmanager`,
+			options: {
+				id: `GTM-NNHS2J2`,
+				includeInDevelopment: true,
+			},
+		},
 	],
 }

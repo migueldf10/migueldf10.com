@@ -11,6 +11,7 @@ import { imageUrlFor } from '../lib/image-url'
 import BlockContent from '../components/block-content'
 import RoleList from '../components/role-list'
 import { format, formatDistance, differenceInDays } from 'date-fns'
+import SEO from '../components/seo'
 
 const PhotoBookHeader = styled.div`
 	display: flex;
@@ -26,6 +27,21 @@ const PhotoBookHeader = styled.div`
 			width: 100%;
 		}
 	`}
+`
+
+const RelatedProjects = styled.div`
+	padding: 2rem 0;
+	margin: auto;
+	width: fit-content;
+	* {
+		text-align: center;
+	}
+	ul {
+		padding: 0px;
+	}
+	li {
+		list-style: none;
+	}
 `
 
 const Meta = styled.div`
@@ -98,13 +114,24 @@ const ArticleBody = styled.div`
 	max-width: 26em;
 	margin: auto;
 	font-size: 1.4rem;
+	p,
+	ul,
+	li,
+	a,
 	figure {
-		width: 100vw;
-		position: relative;
-		left: 50%;
-		right: 50%;
-		margin-left: -50vw;
-		margin-right: -50vw;
+		font-family: 'League Spartan';
+	}
+	figure {
+		margin: 0;
+		max-width: 1600px;
+		@media (min-width: 26em) {
+			margin-left: calc(50% - 50vw);
+			margin-right: calc(50% - 50vw);
+		}
+		@media (min-width: 1600px) {
+			margin-left: calc(50% - 800px);
+			margin-right: calc(50% - 800px);
+		}
 	}
 	figcaption {
 		font-size: 0.7rem;
@@ -114,6 +141,8 @@ const ArticleBody = styled.div`
 	li {
 		margin-bottom: 1em;
 	}
+	border-bottom: 1px solid ${props => props.theme.fgLight};
+	padding-bottom: 4rem;
 `
 
 export const query = graphql`
@@ -189,6 +218,10 @@ export const query = graphql`
 				}
 				roles
 			}
+			seo {
+				seo_title
+				meta_description
+			}
 		}
 	}
 `
@@ -205,9 +238,18 @@ const ProjectTemplate = props => {
 		members,
 		publishedAt,
 		relatedProjects,
+		seo,
 	} = project
+	let seoTitle = title
+	let seoMeta = ''
+	if (seo) {
+		seoTitle = seo.seo_title
+		seoMeta = seo.meta_description
+	}
 	return (
 		<Layout location={props.location} type="fullwidth">
+			<SEO title={seoTitle} description={seoMeta} />
+
 			{errors && (
 				<Container>
 					<GraphQLErrorList errors={errors} />
@@ -286,7 +328,7 @@ const ProjectTemplate = props => {
 					)}
 
 					{relatedProjects && relatedProjects.length > 0 && (
-						<div>
+						<RelatedProjects>
 							<h3>Related projects</h3>
 							<ul>
 								{relatedProjects.map(project => (
@@ -303,7 +345,7 @@ const ProjectTemplate = props => {
 									</li>
 								))}
 							</ul>
-						</div>
+						</RelatedProjects>
 					)}
 				</Article>
 			)}
