@@ -7,9 +7,9 @@ const HeaderContainer = styled.header`
 	background: ${props => props.theme.bg};
 	padding: 16px;
 	padding-top: 80px;
-	max-width: 1300px;
-	margin: auto;
 	h1 {
+		max-width: 1300px;
+		margin: auto;
 		margin: 0;
 		padding: 0;
 		font-family: 'Amstelvar';
@@ -53,6 +53,8 @@ const HeaderContainer = styled.header`
 	}
 
 	p {
+		max-width: 1300px;
+		margin: auto;
 		text-align: center;
 		font-size: 1.6rem;
 		line-height: 1;

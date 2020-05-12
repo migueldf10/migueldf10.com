@@ -3,6 +3,7 @@ import { useStaticQuery, graphql } from 'gatsby'
 import Image from 'gatsby-image'
 import styled from 'styled-components'
 import MEDIA from '../utils/mediaTemplates'
+import Img from 'gatsby-image'
 
 const BioContainer = styled.div`
 	border-top: 1px solid ${props => props.theme.fgLight};
@@ -10,33 +11,28 @@ const BioContainer = styled.div`
 `
 
 export const Content = styled.div`
-	padding: 0px 20px 140px;
-	max-width: 60rem;
+	padding: 0px 20px;
 	margin: auto;
 	display: flex;
+	flex-direction: column;
 	justify-content: space-around;
-	align-items: center;
-	.column {
-		max-width: 60%;
-		p {
-			font-size: 1.1rem;
-			font-variation-settings: 'wdth' 120, 'wght' 500;
-			line-height: 1.4;
-			letter-spacing: -0.5px;
-		}
+	align-items: start;
+	max-width: 60%;
+	p {
+		font-size: 1.1rem;
+		font-variation-settings: 'wdth' 120, 'wght' 500;
+		line-height: 1.4;
+		letter-spacing: -0.5px;
 	}
+
 	${MEDIA.PHONE`
-		flex-direction: column;
 		align-items: start;
 		padding: 10px 20px;
-		.column{
-			max-width: 100%;
-			p{
-				font-size:.8rem;
-				letter-spacing:0px;
-				font-variation-settings: 'wdth' 120, 'wght' 500;
-
-			}
+		max-width: 100%;
+		p{
+			font-size:.8rem;
+			letter-spacing:0px;
+			font-variation-settings: 'wdth' 120, 'wght' 500;
 		}
 	`}
 
@@ -71,13 +67,61 @@ const SectionTitle = styled.div`
 	padding-top: 42px;
 `
 
+const BlogWrapper = styled.div`
+	max-width: 60rem;
+	padding: 2rem;
+	margin: auto;
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	background-color: ${props => props.theme.bgLight};
+
+	${MEDIA.TABLET`
+		.blogPosts{
+			padding:16px;
+			width: auto;
+			box-sizing: border-box;
+		}
+	`}
+	${MEDIA.PHONE`
+		flex-direction: column;
+		padding: 0
+	`}
+`
+
+const ImageWrapper = styled.div`
+	.gatsby-image-wrapper {
+		height: 80vh;
+	}
+	width: 40%;
+	position: sticky;
+	top: 32px;
+	margin: 0 0 auto 0;
+	${MEDIA.TABLET`
+
+  	`}
+	${MEDIA.PHONE`
+		display: block;
+		width: 100%;
+		padding:16px;
+		position: static;
+		text-align: center;
+		margin: 0px auto;
+		.gatsby-image-wrapper {
+			height: 60vh;
+		}
+
+  	`}
+`
+
 const Bio = () => {
 	const data = useStaticQuery(graphql`
 		query BioQuery {
-			avatar: file(absolutePath: { regex: "/profile-pic.jpg/" }) {
+			profileImg: file(relativePath: { eq: "Miguel-Domenech.jpg" }) {
+				relativePath
 				childImageSharp {
-					fixed(width: 150, height: 150) {
-						...GatsbyImageSharpFixed
+					fluid(maxWidth: 960) {
+						...GatsbyImageSharpFluid
 					}
 				}
 			}
@@ -90,6 +134,7 @@ const Bio = () => {
 					}
 					contact {
 						email
+						phone
 					}
 				}
 			}
@@ -99,17 +144,11 @@ const Bio = () => {
 	const { author, social, contact } = data.site.siteMetadata
 	return (
 		<BioContainer id="profileBio">
-			<Content>
-				<div className="column">
-					<Image
-						fixed={data.avatar.childImageSharp.fixed}
-						alt={author}
-						imgStyle={{
-							borderRadius: `50%`,
-						}}
-					/>
-				</div>
-				<div className="column ">
+			<BlogWrapper>
+				<ImageWrapper>
+					<Img fluid={data.profileImg.childImageSharp.fluid} />
+				</ImageWrapper>
+				<Content>
 					<SectionTitle>
 						<h2>About me</h2>
 					</SectionTitle>
@@ -123,7 +162,6 @@ const Bio = () => {
 						ambitious (and fun) projects where I could make a
 						difference.
 					</p>
-
 					<SectionTitle>
 						<h2 id="contactBio">Contact information</h2>
 					</SectionTitle>
@@ -131,17 +169,23 @@ const Bio = () => {
 						In case you have an idea or proposal, send me an email
 						and we can share impressions!
 					</p>
-					<a href={`mailto:${contact.email}?subject=Hey!`}>
-						<span className="title">Email</span> -{' '}
-					</a>
-					<u>{contact.email}</u>
-					<br />
-					<a href={`https://linkedin.com/in/${social.linkedin}`}>
-						<span className="title">LinkedIn</span> -{' '}
-					</a>
-					<u>@{social.linkedin}</u>
-				</div>
-			</Content>
+					<div className="contactSection">
+						<a href={`mailto:${contact.email}?subject=Hey!`}>
+							<span className="title">Email</span> -{' '}
+						</a>
+						<u>{contact.email}</u>
+						<br />
+						<a href={`tel:${contact.phone}`}>
+							<span className="title">Phone</span>
+						</a>
+						<u> (+31) {contact.phone}</u> <br />
+						<a href={`https://linkedin.com/in/${social.linkedin}`}>
+							<span className="title">LinkedIn</span> -{' '}
+						</a>
+						<u>@{social.linkedin}</u>
+					</div>
+				</Content>
+			</BlogWrapper>
 		</BioContainer>
 	)
 }

@@ -5,14 +5,14 @@ import styled from 'styled-components'
 import BlockContent from './block-content'
 const { format } = require('date-fns')
 
-const ArticleGridItemContainer = styled.article`
+const ArticleGridItemContainer = styled(Link)`
 	max-width: 100%;
 	border-bottom: 1px solid ${props => props.theme.fgLight};
 	padding: 18px 16px 16px;
 	&:last-child {
 		border: none;
 	}
-	a {
+	.buttonPrimary {
 		display: inline-block;
 		color: ${props => props.theme.ctaFg};
 		background-color: ${props => props.theme.ctaBg};
@@ -20,28 +20,21 @@ const ArticleGridItemContainer = styled.article`
 		border-radius: 20px;
 		text-transform: none;
 		text-decoration: none;
-		font-variation-settings: 'wdth' 100, 'wght' 600;
+		font-variation-settings: 'wdth' 100, 'wght' 300;
 		letter-spacing: 1px;
-		transition: 0.5s;
-		:hover {
-			font-variation-settings: 'wdth' 140, 'wght' 900;
-			letter-spacing: -1px;
-		}
 	}
 	h3 {
 		font-size: 22px;
-		font-variation-settings: 'wdth' 110, 'wght' 340, 'XOPQ' 200, 'YOPQ' 59;
+		font-variation-settings: 'wdth' 130, 'wght' 840, 'XOPQ' 100, 'YOPQ' 59;
 		margin: 0.3rem 0 1rem;
 		line-height: 1;
 	}
-	.button {
-		color: ${props => props.theme.fg};
-		font-weight: 700;
-	}
+
 	p {
 		margin: 0px;
 		padding-bottom: 1rem;
 		line-height: 1.2;
+		font-variation-settings: 'wdth' 80, 'wght' 300;
 	}
 
 	${MEDIA.PHONE`
@@ -51,7 +44,23 @@ const ArticleGridItemContainer = styled.article`
 			letter-spacing: 0px;
 		}
   	`}
+	* {
+		transition: 0.5s;
+		transition-timing-function: ease-in-out;
+	}
+	:hover {
+		h3 {
+			font-variation-settings: 'wdth' 130, 'wght' 340, 'XOPQ' 200,
+				'YOPQ' 59;
+		}
+		.buttonPrimary {
+			font-variation-settings: 'wdth' 120, 'wght' 900;
+		}
+
+		background: ${props => props.theme.bgAccent};
+	}
 `
+
 const Header = styled.div`
 	text-transform: uppercase;
 	margin: 0;
@@ -93,12 +102,13 @@ const Header = styled.div`
 		}
   	`}
 `
+
 export default class ArticleGridElement extends React.Component {
 	render() {
 		const { publishedAt, categories, title, slug, _rawExcerpt } = this.props
 
 		return (
-			<ArticleGridItemContainer>
+			<ArticleGridItemContainer to={`/article/${slug.current}`}>
 				<Header>
 					{publishedAt && (
 						<div className="dateContainer">
@@ -121,7 +131,7 @@ export default class ArticleGridElement extends React.Component {
 				<h3>{title}</h3>
 				{_rawExcerpt && <BlockContent blocks={_rawExcerpt || []} />}
 
-				<Link to={`/article/${slug.current}`}>Read Article</Link>
+				<span className="buttonPrimary">Read Article</span>
 			</ArticleGridItemContainer>
 		)
 	}

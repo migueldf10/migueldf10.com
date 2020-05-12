@@ -3,7 +3,6 @@ import { graphql } from 'gatsby'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import Header from '../components/header'
-import Img from 'gatsby-image'
 import styled from 'styled-components'
 import MEDIA from '../utils/mediaTemplates'
 import ArticleGridItem from '../components/articleGridItem'
@@ -14,66 +13,27 @@ import {
 } from '../lib/helpers'
 import ProjectPreviewGrid from '../components/project-preview-grid'
 
-const ImageWrapper = styled.div`
-	.gatsby-image-wrapper {
-		height: 70vh;
-	}
-	width: 40%;
-	position: sticky;
-	top: 32px;
-	margin: 0 0 auto 0;
-	${MEDIA.TABLET`
-		display:none;
-
-  	`}
-	${MEDIA.PHONE`
-	display: block;
-		width: 100%;
-		padding:16px;
-		position: static;
-		text-align: center;
-		margin: 0px auto;
-		.gatsby-image-wrapper {
-			height: 60vh;
-		}
-
-  	`}
-`
-
 const Container = styled.div`
 	padding: 100px 1rem;
 	background: ${props => props.theme.bg};
 	${MEDIA.TABLET`
-		margin: 100px 3rem;
-		`}
+		/*margin: 100px 3rem;*/
+		padding: 50px 3rem 0;
+	`}
 	${MEDIA.PHONE`
 		margin: 0;
-		
 	`}
 `
 
 const BlogWrapper = styled.div`
-	max-width: 1080px;
+	max-width: 50rem;
 	margin: 32px auto;
-	position: relative;
+	padding: 2rem 4rem;
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	background-color: ${props => props.theme.bgLight};
-
-	/* margin: auto; */
-
-	.blogPosts {
-		width: 60%;
-		display: inline-block;
-		padding: 0 16px;
-	}
 	${MEDIA.TABLET`
-		flex-direction: column-reverse;
-		.blogPosts{
-			padding:16px;
-			width: auto;
-			box-sizing: border-box;
-		}
+		padding: 1rem;
 	`}
 `
 
@@ -131,21 +91,13 @@ class BlogIndex extends React.Component {
 				</Container>
 				<Container>
 					<SectionTitle>
-						<h2>Blog</h2>
+						<h2>Latest Articles</h2>
 					</SectionTitle>
 					<BlogWrapper>
-						<ImageWrapper>
-							<Img
-								fluid={data.profileImg.childImageSharp.fluid}
-							/>
-						</ImageWrapper>
-
-						<div className="blogPosts">
-							{articleNodes &&
-								articleNodes.map((node, index) => (
-									<ArticleGridItem key={index} {...node} />
-								))}
-						</div>
+						{articleNodes &&
+							articleNodes.map((node, index) => (
+								<ArticleGridItem key={index} {...node} />
+							))}
 					</BlogWrapper>
 				</Container>
 			</Layout>
@@ -220,7 +172,7 @@ export const pageQuery = graphql`
 			}
 		}
 		articles: allSanityArticle(
-			limit: 6
+			limit: 4
 			sort: { fields: [publishedAt], order: DESC }
 			filter: {
 				slug: { current: { ne: null } }
