@@ -22,6 +22,8 @@ const Container = styled.div`
 	`}
 	${MEDIA.PHONE`
 		margin: 0;
+		padding: 3rem 1.2rem;
+
 	`}
 `
 
