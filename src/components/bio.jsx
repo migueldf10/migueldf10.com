@@ -135,6 +135,7 @@ const Bio = () => {
 					contact {
 						email
 						phone
+						phoneNl
 					}
 				}
 			}
@@ -154,7 +155,7 @@ const Bio = () => {
 					</SectionTitle>
 					<p>
 						My name is Miguel Domenech and I'm a freelance marketer,
-						web designer & developer with passion for solving
+						web designer & web developer with passion for solving
 						complex problems through simple design.
 					</p>
 					<p>
@@ -169,20 +170,25 @@ const Bio = () => {
 						In case you have an idea or proposal, send me an email
 						and we can share impressions!
 					</p>
+
 					<div className="contactSection">
 						<a href={`mailto:${contact.email}?subject=Hey!`}>
-							<span className="title">Email</span> -{' '}
+							<span className="title">Send email</span> -{' '}
 						</a>
 						<u>{contact.email}</u>
 						<br />
 						<a href={`tel:${contact.phone}`}>
-							<span className="title">Phone</span>
+							<span className="title">Call</span>
 						</a>
-						<u> (+31) {contact.phone}</u> <br />
+						<u> - {contact.phoneNl}</u> <br />
 						<a href={`https://linkedin.com/in/${social.linkedin}`}>
-							<span className="title">LinkedIn</span> -{' '}
+							<span className="title">Open LinkedIn</span> -{' '}
 						</a>
 						<u>@{social.linkedin}</u>
+						<p>
+							*International callers use {contact.phone}{' '}
+							(Netherlands)
+						</p>
 					</div>
 				</Content>
 			</BlogWrapper>

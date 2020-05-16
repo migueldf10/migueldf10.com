@@ -20,7 +20,8 @@ module.exports = {
 		},
 		contact: {
 			email: `hi@migueldf10.com`,
-			phone: `0686482708`
+			phone: `+31686482798`,
+			phoneNl: `0686482798`,
 		},
 	},
 	plugins: [
