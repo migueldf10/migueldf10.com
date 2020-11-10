@@ -1,6 +1,6 @@
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
-import Image from 'gatsby-image'
+//import Image from 'gatsby-image'
 import styled from 'styled-components'
 import MEDIA from '../utils/mediaTemplates'
 import Img from 'gatsby-image'
@@ -23,6 +23,22 @@ export const Content = styled.div`
 		font-variation-settings: 'wdth' 120, 'wght' 500;
 		line-height: 1.4;
 		letter-spacing: -0.5px;
+		> a {
+			cursor: pointer;
+			position: relative;
+			display: inline-block;
+			z-index: 2;
+			&::after {
+				content: '';
+				width: 100%;
+				left: 0px;
+				bottom: 4px;
+				position: absolute;
+				height: 8px;
+				z-index: -1;
+				background: ${props => props.theme.ctaBg};
+			}
+		}
 	}
 
 	${MEDIA.PHONE`
@@ -142,7 +158,7 @@ const Bio = () => {
 		}
 	`)
 
-	const { author, social, contact } = data.site.siteMetadata
+	const { social, contact } = data.site.siteMetadata
 	return (
 		<BioContainer id="profileBio">
 			<BlogWrapper>
@@ -154,21 +170,23 @@ const Bio = () => {
 						<h2>About me</h2>
 					</SectionTitle>
 					<p>
-						My name is Miguel Domenech and I'm a freelance marketer,
-						web designer & web developer with passion for solving
-						complex problems through simple design.
+						My name is Miguel Domenech and I have background as CMO,
+						CTO and Freelancer in marketing and tech , trying to
+						solve complex problems through simple design.
 					</p>
 					<p>
-						Currently I work & live in Amsterdam and I'm looking for
-						ambitious (and fun) projects where I could make a
-						difference.
+						Currently I work & live in Amsterdam and I'm working
+						full time at{' '}
+						<a href="https://directimpact.online">Direct Impact</a>,
+						where we are making marketing 🤘 being innovative in
+						tech.
 					</p>
 					<SectionTitle>
 						<h2 id="contactBio">Contact information</h2>
 					</SectionTitle>
 					<p>
-						In case you have an idea or proposal, send me an email
-						and we can share impressions!
+						Ideas or just interested in something in particular?,
+						send me an email!
 					</p>
 
 					<div className="contactSection">

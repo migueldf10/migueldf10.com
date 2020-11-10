@@ -1,16 +1,17 @@
 {
-  "name": "gatsby-starter-blog",
+  "name": "migueldf10",
   "private": true,
-  "description": "A starter for a blog powered by Gatsby and Markdown",
+  "description": "A personal site built using gatsby and sanity",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Miguel Domenech <migueldf10@gmail.com>",
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/migueldf10"
   },
   "dependencies": {
     "@mdx-js/mdx": "^1.5.8",
     "@mdx-js/react": "^1.5.8",
     "@sanity/block-content-to-react": "^2.0.7",
+    "@sanity/core": "^2.0.9",
     "@sanity/image-url": "^0.140.18",
     "babel-plugin-styled-components": "^1.10.7",
     "date-fns": "^2.12.0",
@@ -58,7 +59,7 @@
     "gatsby-plugin-remove-trailing-slashes": "^2.2.3",
     "prettier": "1.19.1"
   },
-  "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
+  "homepage": "https://migueldf10.com",
   "keywords": [
     "gatsby"
   ],
@@ -66,7 +67,7 @@
   "main": "n/a",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"
+    "url": "git+https://github.com/migueldf10/migueldf10.git"
   },
   "scripts": {
     "build": "gatsby build",

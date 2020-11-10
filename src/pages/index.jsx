@@ -60,7 +60,7 @@ const SectionTitle = styled.div`
 class BlogIndex extends React.Component {
 	render() {
 		const { data } = this.props
-		const siteTitle = data.site.siteMetadata.title
+		//const siteTitle = data.site.siteMetadata.title
 
 		const projectNodes = (data || {}).projects
 			? mapEdgesToNodes(data.projects)
@@ -78,8 +78,11 @@ class BlogIndex extends React.Component {
 				<SEO title="migueldf10's freelance website" />
 				<Header title="Hello, it's Miguel Domenech">
 					<p>
-						A freelance web designer, developer and marketer living
-						in Amsterdam.
+						Full stack web developer. Making tech{' '}
+						<span role="img" aria-label="love icon">
+							❤️
+						</span>
+						marketing. Based in Amsterdam.
 					</p>
 				</Header>
 				<Container>

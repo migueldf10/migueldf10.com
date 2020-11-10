@@ -8,20 +8,22 @@ const PortfolioGrid = styled.div`
 	flex-direction: row;
 	flex-wrap: wrap;
 	padding: 32px;
+	max-width: 1800px;
+	margin: 0 auto;
+
 	${MEDIA.PHONE`
 		padding:0;
 	`}
 `
 function ProjectPreviewGrid(props) {
 	return (
-		<Fragment   >
-			<PortfolioGrid   >
+		<Fragment>
+			<PortfolioGrid>
 				{props.nodes &&
 					props.nodes.map(node => (
 						<ProjectPreview {...node} key={node.id} />
 					))}
 			</PortfolioGrid>
-
 		</Fragment>
 	)
 }
@@ -29,7 +31,7 @@ function ProjectPreviewGrid(props) {
 ProjectPreviewGrid.defaultProps = {
 	title: '',
 	nodes: [],
-	browseMoreHref: ''
+	browseMoreHref: '',
 }
 
 export default ProjectPreviewGrid

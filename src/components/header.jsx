@@ -9,8 +9,7 @@ const HeaderContainer = styled.header`
 	padding-top: 80px;
 	h1 {
 		max-width: 1300px;
-		margin: auto;
-		margin: 0;
+		margin: 0 auto;
 		padding: 0;
 		font-family: 'Amstelvar';
 		position: relative;
@@ -54,11 +53,10 @@ const HeaderContainer = styled.header`
 
 	p {
 		max-width: 1300px;
-		margin: auto;
+		margin: 0 auto;
 		text-align: center;
 		font-size: 1.6rem;
 		line-height: 1;
-		margin: 0px;
 		padding: 80px 0 0 0;
 		letter-spacing: 1px;
 		font-variation-settings: 'wght' 500;

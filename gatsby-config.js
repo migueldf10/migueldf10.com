@@ -1,7 +1,7 @@
 const path = require('path')
 // Load variables from `.env` as soon as possible
 require('dotenv').config({
-	path: `.env.${process.env.NODE_ENV || 'development'}`
+	path: `.env.${process.env.NODE_ENV || 'development'}`,
 })
 
 const clientConfig = require('./client-config')
@@ -12,7 +12,7 @@ module.exports = {
 	siteMetadata: {
 		title: `Migueldf10.com`,
 		author: `Miguel Domenech`,
-		description: `A personal blog trying to deliver some quality content to the world!.`,
+		description: `Miguel Domenech's personal site!.`,
 		siteUrl: `https://migueldf10.com/`,
 		social: {
 			twitter: `migueldf10`,
@@ -47,11 +47,11 @@ module.exports = {
 			},
 		},
 		{
-			resolve: "gatsby-plugin-web-font-loader",
+			resolve: 'gatsby-plugin-web-font-loader',
 			options: {
 				custom: {
-					families: ["Amstelvar"],
-					urls: ["/fonts/fonts.css"],
+					families: ['Amstelvar'],
+					urls: ['/fonts/fonts.css'],
 				},
 			},
 		},
@@ -66,7 +66,6 @@ module.exports = {
 							linkImagesToOriginal: true,
 							quality: 90,
 							backgroundColor: `none`,
-
 						},
 					},
 				],
@@ -113,8 +112,8 @@ module.exports = {
 				...clientConfig.sanity,
 				token,
 				watchMode: !isProd,
-				overlayDrafts: !isProd && token
-			}
+				overlayDrafts: !isProd && token,
+			},
 		},
 		{
 			resolve: `gatsby-plugin-google-tagmanager`,
